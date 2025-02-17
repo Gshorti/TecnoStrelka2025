@@ -16,7 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from rest_framework.routers import DefaultRouter
+
+from objects.views import ObjView
+from routes.views import RoutesView
+from users.views import UserView
+router = DefaultRouter()
+
+router.register('users', UserView)
+router.register('routes', RoutesView)
+router.register('objects', ObjView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
 ]
+urlpatterns += router.urls

@@ -1,8 +1,8 @@
 FROM alt:p11
 
 COPY requirements.txt /temp/requirements.txt
-COPY service /service
-WORKDIR /service
+COPY Map /Map
+WORKDIR /Map
 EXPOSE 8000
 
 RUN apt-get update

@@ -1,11 +1,11 @@
 services:
   web-app:
     build:
-      context: .
+      context: ./back-end/
     ports: 
       - "8000:8000"
     volumes:
-      - ./service:/service
+      - ./back-end/Map:/Map
 
     environment:
       - DB_HOST=database
