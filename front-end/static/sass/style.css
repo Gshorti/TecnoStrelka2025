@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  width: 80vw;
+  background-color: red;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-div {
+  display: flex;
+  width: 80%;
+}/*# sourceMappingURL=style.css.map */
