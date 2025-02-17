@@ -2,21 +2,46 @@
     margin: 0
     padding: 0
 
+header
+    background-color: #fff
+    width: auto
+    height: 5vh
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: center
+
 main 
-    width: 80vw
-    background-color: red
+    width: 100vw
     height: auto
     display: flex
     justify-content: center
     align-items: center
+    background-color: #254C59
 
 .main-div 
-    display: flex
-    width: 80%
-    // flex-direction: column 
-    // justify-content: center
-    // backroud-color: red
-    // width: 100%
-    // align-items: center
-    
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(200px, auto))
+    width: 80vw
+    background-color: #92A6AC
+    height: 95vh
 
+.search
+    border-radius: 50px
+    border: black solid 1px
+    width: 80vw
+    height: 3vh
+    padding: 0 10px
+
+.home-img
+    height: 50px
+
+.home-button
+    border: none
+    background: none
+
+.user-button
+    display: flex
+    height: 50px
+    border: none
+    background: none
