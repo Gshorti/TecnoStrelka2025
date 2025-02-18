@@ -1,0 +1,110 @@
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 50px
+  width: 80vw
+  background-color: #92A6AC
+  min-height: 95vh
+  color: white
+  gap: 50px
+
+  .create-route
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 10px
+    width: 90%
+
+    .route
+      background: #5C5C5C
+      height: 300px
+      width: 100%
+      display: flex
+      justify-content: flex-end
+      align-items: flex-end
+
+      .import
+        margin: 10px
+        width: 100px
+        height: 30px
+        border-radius: 40px
+        border: none
+        outline: none
+
+    .route-name, .route-description, .route-availability
+      display: flex
+      width: 100%
+      justify-content: space-between
+      align-items: center
+
+      label
+        font-size: 3ch
+
+      input, select
+        width: 40%
+        height: 35px
+        padding: 0 10px
+        display: flex
+        justify-content: center
+        align-items: center
+        background: #5C5C5C
+        border-radius: 30px
+        border: none
+        outline: none
+        color: white
+        font-family: Roboto, sans-serif
+        font-weight: 300
+        line-height: 41px
+        letter-spacing: 0px
+
+    .description
+      display: flex
+      justify-content: center
+      align-items: flex-start
+      flex-direction: column
+      width: 100%
+
+      textarea
+        padding: 12px
+        resize: none
+        width: 97%
+        height: 100px
+        background: #5C5C5C
+        border-radius: 30px
+        border: none
+        outline: none
+
+
+
+    .images-of-route
+      display: flex
+      width: 100%
+      height: 400px
+      background: #5C5C5C
+      overflow-x: scroll
+      overflow-y: hidden
+      flex-direction: row
+      justify-content: flex-start
+      align-items: center
+
+      .image
+        width: 350px
+        height: 350px
+        margin: 0 15px
+        flex-grow: 1
+        flex: none
+        background: #C4C4C4
+
+    .create-route-button
+      width: 40vw
+      height: 35px
+      padding: 0 10px
+      display: flex
+      justify-content: center
+      align-items: center
+      background: #5C5C5C
+      border-radius: 30px
+      border: none
+      outline: none
+      color: white
