@@ -28,10 +28,10 @@ router.register('users', UserView)
 router.register('routes', RoutesView)
 router.register('objects', ObjView)
 router.register('comments', ComView)
-router.register('images', ImageView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('images/', ImageView.as_view()),
 
 ]
 urlpatterns += router.urls
