@@ -159,7 +159,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  background: red;
   gap: 40px;
 }
 .container .rating-container .other-rating-of-route .rating {
