@@ -1,0 +1,177 @@
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 50px
+  width: 80vw
+  background-color: #92A6AC
+  min-height: 95vh
+  color: white
+  gap: 50px
+
+
+  .main-info-container
+    width: 90%
+    display: grid
+    grid-template-columns: 1fr 1fr
+
+    .main-photo-of-route
+      width: 300px
+      height: 300px
+
+    .text-info
+      display: grid
+      grid-template-rows: 2fr 1fr 1fr
+      gap: 20px
+      width: 100%
+
+      .name-of-route
+        min-width: 300px
+        line-break: anywhere
+
+      .if-visit-route
+        display: flex
+        align-items: center
+        width: 100%
+        height: 100%
+        gap: 20px
+
+        font-size: 30px
+
+        input[type="checkbox"]
+          appearance: none
+          -webkit-appearance: none
+          width: 50px
+          height: 50px
+          border: 2px solid white
+          background: transparent
+          cursor: pointer
+
+          &:checked
+            background-color: blue
+
+      .start-route
+        width: 100%
+        height: 100%
+        display: flex
+        align-items: flex-end
+
+        button
+          background: #5C5C5C
+          width: 260px
+          height: 50px
+          border-radius: 30px
+          border: none
+          outline: none
+
+          color: white
+          font-size: 20px
+          font-weight: lighter
+
+  .description-container
+    width: 90%
+    line-break: normal
+
+  .route-container
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 40px
+    width: 90%
+
+    .route
+      background: #5C5C5C
+      height: 300px
+      width: 100%
+
+    .route-interactive-buttons
+      width: 100%
+      display: flex
+      justify-content: space-between
+      gap: 20px
+
+      .content-button
+        width: 200px
+        height: 50px
+        display: flex
+        justify-content: center
+        align-items: center
+        background: #5C5C5C
+        border-radius: 30px
+        border: none
+        outline: none
+        color: white
+        font-family: Roboto, sans-serif
+        font-weight: 300
+        line-height: 41px
+        letter-spacing: 0px
+
+      .big
+        width: 300px
+        gap: 20px
+
+  .images-of-route
+    display: flex
+    width: 90%
+    height: 400px
+    background: #5C5C5C
+    overflow-x: scroll
+    overflow-y: hidden
+    flex-direction: row
+    justify-content: flex-start
+    align-items: center
+
+    .image
+      width: 350px
+      height: 350px
+      margin: 0 15px
+      flex-grow: 1
+      flex: none
+      background: #C4C4C4
+
+  .rating-container
+    width: 90%
+    display: flex
+    flex-direction: column
+    gap: 20px
+
+    .rating-interactive-buttons
+      display: flex
+      gap: 20px
+      .create-rating, .change-sort-order
+        width: auto
+        height: 75px
+        padding: 20px
+        border-radius: 40px
+        border: none
+        outline: none
+        background: #5C5C5C
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 20px
+        color: white
+        font-size: 14px
+        img
+          width: 50px
+          height: 50px
+
+    .other-rating-of-route
+      display: flex
+      flex-direction: column
+      width: 100%
+      gap: 40px
+
+      .rating
+        width: 100%
+        padding: 20px
+        background: #5C5C5C
+
+        .user-data-and-rating
+          display: grid
+          grid-template-columns: 1fr 1fr
+          .user-data, .rating-stars
+            width: 100%
+
+        .comment-to-rating
+          line-break: anywhere
