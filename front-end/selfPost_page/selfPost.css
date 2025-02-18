@@ -162,13 +162,19 @@
   gap: 40px;
 }
 .container .rating-container .other-rating-of-route .rating {
-  width: 90%;
+  width: 100%;
   padding: 20px;
   background: #5C5C5C;
 }
 .container .rating-container .other-rating-of-route .rating .user-data-and-rating {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+.container .rating-container .other-rating-of-route .rating .user-data-and-rating .user-data, .container .rating-container .other-rating-of-route .rating .user-data-and-rating .rating-stars {
+  width: 100%;
+}
+.container .rating-container .other-rating-of-route .rating .comment-to-rating {
+  line-break: anywhere;
 }
 
 /*# sourceMappingURL=selfPost.css.map */

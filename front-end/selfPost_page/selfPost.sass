@@ -163,9 +163,15 @@
       gap: 40px
 
       .rating
-        width: 90%
+        width: 100%
         padding: 20px
         background: #5C5C5C
+
         .user-data-and-rating
           display: grid
           grid-template-columns: 1fr 1fr
+          .user-data, .rating-stars
+            width: 100%
+
+        .comment-to-rating
+          line-break: anywhere
