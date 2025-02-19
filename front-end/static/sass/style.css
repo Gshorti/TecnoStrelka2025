@@ -1,10 +1,7 @@
-@media screen and (min-width: 771px) and (max-width: 1024px) {
-  header {
-    height: auto !important;
-    background-color: red !important;
-  }
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@media screen and (min-width: 320px) and (max-width: 560px) {
   .main-div {
-    grid-template-columns: repeat(2, 40vw) !important;
+    grid-template-columns: repeat(1, minmax(100px, auto)) !important;
   }
 }
 * {
@@ -12,10 +9,15 @@
   padding: 0;
 }
 
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+}
+
 header {
   background-color: #fff;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 8vh;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -24,7 +26,7 @@ header {
 
 main {
   width: 100vw;
-  height: auto;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,13 +35,10 @@ main {
 
 .main-div {
   display: grid;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  grid-template-columns: repeat(2, 40vw);
+  grid-template-columns: repeat(2, minmax(200px, auto));
   width: 80vw;
   background-color: #92A6AC;
-  height: 95vh;
+  height: 90vh;
 }
 
 .search {
@@ -51,16 +50,20 @@ main {
 }
 
 .header-img {
-  height: 55vh;
+  height: 50px;
 }
 
 .home-button {
   border: none;
   background: none;
+  display: flex;
+  height: 50px;
 }
 
 .user-button {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 50px;
   border: none;
   background: none;
@@ -72,6 +75,24 @@ main {
   border: none;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.user-button {
+  display: flex;
+}
+
+.plus-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  border: none;
+  background: none;
+}
+
+#data {
+  color: white;
 }
 
 /*# sourceMappingURL=style.css.map */
