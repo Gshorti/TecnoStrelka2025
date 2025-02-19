@@ -1,10 +1,10 @@
-class HTTP_request {
+export class HTTP_request {
     allPostURL = ''
 
     constructor() {
     }
 
-    async get(url) {
+    async get(url, headers) {
         let output = {}
         
         await fetch(url, {
@@ -33,15 +33,15 @@ class HTTP_request {
     }
 }
 
-let http = new HTTP_request()
+// let http = new HTTP_request()
 
-// HEADERS Template
-let headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-}
+// HEADERS Te
+// let headers = {
+//     'Accept': 'application/json',
+//     'Content-Type': 'application/json'
+// }
 
-// DATA Template
+// // DATA Template
 // let data = {
 //     'name': "qwerty",
 //     'data': {},
@@ -49,13 +49,13 @@ let headers = {
 //     'images': [ 1 ]
 // }
 
-// POST request
+// // POST request
 // let post = http.post('https://www.kringeproduction.ru/routes/', data, headers)
 // post.then((data) => {
 //     console.log(data)
 // })
 
-// GET request
+// // GET request
 // let get = http.get('https://www.kringeproduction.ru/routes/', headers)
 // get.then((data) => {
 //     console.log(data)
