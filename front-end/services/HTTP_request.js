@@ -7,7 +7,7 @@ export class HTTP_request {
             })
 
             if (!response.ok) {
-                throw new Error(response)
+                return Promise.reject(response)
             }
 
             const data = await response.json()
@@ -26,7 +26,7 @@ export class HTTP_request {
             })
 
             if (!response.ok) {
-                throw new Error(response)
+                return Promise.reject(response)
             }
 
             const data = await response.json()
