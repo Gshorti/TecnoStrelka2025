@@ -1,25 +1,20 @@
 export class HTTP_request {
-    allPostURL = ''
-
-    constructor() {
-    }
-
     async get(url, headers) {
         let output = {}
-        
+
         await fetch(url, {
             method: 'get',
             headers: headers,
         }).then(response => response.json())
-          .then(data => output = data)
-          .catch(error => output = new Error(error))
+            .then(data => output = data)
+            .catch(error => output = new Error(error))
 
         return output
     }
 
     async post(url, body, headers) {
         let output = {}
-        
+
         await fetch(url, {
             method: "post",
             headers: headers,
@@ -33,9 +28,10 @@ export class HTTP_request {
     }
 }
 
+// CREATING http request object
 // let http = new HTTP_request()
 
-// HEADERS Te
+// HEADERS Template
 // let headers = {
 //     'Accept': 'application/json',
 //     'Content-Type': 'application/json'
