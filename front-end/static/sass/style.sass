@@ -1,17 +1,26 @@
+@media screen and (min-width: 771px) and (max-width: 1024px)
+    header
+        height: auto !important
+        background-color: red !important
+
+    .main-div
+        grid-template-columns: repeat(2, calc(80vw/2)) !important
+
 *
     margin: 0
     padding: 0
 
 header
     background-color: #fff
-    width: auto
-    height: 5vh
+    width: 100%
+    height: auto
     display: flex
     flex-direction: row
     justify-content: space-around
     align-items: center
 
-main 
+
+main
     width: 100vw
     height: auto
     display: flex
@@ -19,9 +28,12 @@ main
     align-items: center
     background-color: #254C59
 
-.main-div 
+.main-div
     display: grid
-    grid-template-columns: repeat(auto-fit, minmax(200px, auto))
+    justify-content: center
+    align-items: center
+    flex-direction: column
+    grid-template-columns: repeat(2, calc(80vw/2))
     width: 80vw
     background-color: #92A6AC
     height: 95vh
@@ -33,8 +45,8 @@ main
     height: 3vh
     padding: 0 10px
 
-.home-img
-    height: 50px
+.header-img
+    height: 55vh
 
 .home-button
     border: none
@@ -45,3 +57,11 @@ main
     height: 50px
     border: none
     background: none
+
+.header-iframe
+    width: 100%
+    height: 10vh
+    border: none
+    display: flex
+    align-items: center
+
