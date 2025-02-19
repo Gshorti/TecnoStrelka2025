@@ -1,11 +1,11 @@
 // HTTP REQUEST EXAMPLE // 
 
-import { HTTP_request } from '../HTTP_request.js' // IMPORT
+import { HTTP_request } from '../services/HTTP_request.js' // IMPORT
 
 document.getElementById('send-data').addEventListener('click', function() {
     // POST request example
     let http = new HTTP_request()    // CREATING http request
-    
+
     let headers = { // SETTING http request headers
         'Accept': 'application/json',
         'Content-Type': 'application/json'
@@ -21,6 +21,8 @@ document.getElementById('send-data').addEventListener('click', function() {
     let post = http.post('https://www.kringeproduction.ru/routes/', data, headers)  // SENDING http request
     post.then((data) => {  // GETTING http request output
         console.log(data)
+    }).catch((err) => {
+        console.error(JSON.stringify(err))
     })
 })
 
