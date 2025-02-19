@@ -3,55 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/sass/style.css">
     <link rel="stylesheet" href="createPost.css">
+    <script type="module" src="request.js"></script>
 </head>
 <body>
-    <header>
-        <button class="home-button"><img src="../static/img/Home.svg" class="home-img"></button>
-        <input type="text" class="search" placeholder="Search">
-        <button class="user-button"><img src="../static/img/User.svg" class="user-img"></button>
-    </header>
-    <main>
-        <div class="container">
+<header>
+    <button class="home-button"><img src="../static/img/Home.svg" class="home-img"></button>
+    <input type="text" class="search" placeholder="Search">
+    <button class="user-button"><img src="../static/img/User.svg" class="user-img"></button>
+</header>
+<main>
+    <div class="container">
             <span class="hello-part">
                 <h1>Создайте свой маршрут</h1>
             </span>
-            <div class="create-route">
+        <div class="create-route">
                 <span class="route-name">
                     <label for="route-name-input">Назовите маршрут:</label>
                     <input id="route-name-input">
                 </span>
-                <span class="route">
-                    <button class="import">Импорт</button>
-                </span>
-                <span class="images-of-route">
-                    <span class="image">
-                        <img src="" alt="">
-                    </span>
-                </span>
-                <span class="description route-description">
+            <span class="route">
+                <button class="import">Импорт</button>
+            </span>
+            <span class="images-of-route" id="images-or-route"></span>
+            <span class="description route-description">
                     <label for="route-description-textarea">Опишите маршрут:</label>
                     <textarea id="route-description-textarea"></textarea>
                 </span>
-                <span class="route-availability">
-                    <label for="route-availability-input">Выберите доступность:</label>
-                    <select id="route-availability-input">
-                        <option>
-                            <img src="../static/img/BlockHaveMoreData.svg">
-                            <p>Общедоступный</p>
-                        </option>
-                        <option>
-                            <img src="../static/img/BlockHaveMoreData.svg">
-                            <p>Приватный</p>
-                        </option>
-                    </select>
-                </span>
-                <button class="create-route-button">создать</button>
-                <p class="route-moderation">все маршруты перед публикацией проверяются модерацией</p>
-            </div>
+            <span class="route-availability">
+                <label for="route-availability-input">Выберите доступность:</label>
+                <select id="route-availability-input">
+                    <option>
+                        <img src="../static/img/BlockHaveMoreData.svg">
+                        <p>Общедоступный</p>
+                    </option>
+                    <option>
+                        <img src="../static/img/BlockHaveMoreData.svg">
+                        <p>Приватный</p>
+                    </option>
+                </select>
+            </span>
+            <button class="create-route-button" id="create-route-button">создать</button>
+            <p class="route-moderation">все маршруты перед публикацией проверяются модерацией</p>
         </div>
-    </main>
-    <footer></footer>
+    </div>
+</main>
+<footer></footer>
+
+<template id="new-image-template">
+    <span class="image">
+        <label class="label-input-file">
+            <input type="file" class="file-input" oninput="inputFile(event)">
+        </label>
+        <img src="../static/img/addImage.svg" width="150" height="150" class="create-image">
+        <img src="../static/img/deleteImage.svg" width="30" height="30" class="delete-image" onclick="deleteImage(event)">
+        <p id="data-image-id" style="display: none">0</p>
+    </span>
+</template>
+
 </body>
+<script src="imageAddScript.js"></script>
 </html>
