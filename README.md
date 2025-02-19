@@ -1,1 +1,1 @@
-#TechnoStrelka2025 selection task
+# TechnoStrelka2025 selection task
