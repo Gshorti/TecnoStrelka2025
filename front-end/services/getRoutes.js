@@ -1,4 +1,4 @@
-import { HTTP_request } from "./services/HTTP_request.js";
+import { HTTP_request } from "./HTTP_request.js";
 
 window.onload = function() {
     let http = new HTTP_request();
