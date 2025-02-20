@@ -1,7 +1,14 @@
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-top: 50px;
   width: 80vw;
   background-color: #92A6AC;
@@ -9,35 +16,50 @@
   color: white;
   gap: 50px;
 }
+
 .container .main-info-container {
   width: 90%;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
+
 .container .main-info-container .main-photo-of-route {
   width: 300px;
   height: 300px;
 }
+
 .container .main-info-container .text-info {
+  display: -ms-grid;
   display: grid;
-  grid-template-rows: 2fr 1fr 1fr;
+  -ms-grid-rows: 2fr 1fr 1fr;
+      grid-template-rows: 2fr 1fr 1fr;
   gap: 20px;
   width: 100%;
 }
+
 .container .main-info-container .text-info .name-of-route {
   min-width: 300px;
   line-break: anywhere;
 }
+
 .container .main-info-container .text-info .if-visit-route {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
   height: 100%;
   gap: 20px;
   font-size: 30px;
 }
-.container .main-info-container .text-info .if-visit-route input[type=checkbox] {
-  appearance: none;
+
+.container .main-info-container .text-info .if-visit-route input[type="checkbox"] {
+  -moz-appearance: none;
+       appearance: none;
   -webkit-appearance: none;
   width: 50px;
   height: 50px;
@@ -45,15 +67,22 @@
   background: transparent;
   cursor: pointer;
 }
-.container .main-info-container .text-info .if-visit-route input[type=checkbox]:checked {
+
+.container .main-info-container .text-info .if-visit-route input[type="checkbox"]:checked {
   background-color: blue;
 }
+
 .container .main-info-container .text-info .start-route {
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-end;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
+
 .container .main-info-container .text-info .start-route button {
   background: #5C5C5C;
   width: 260px;
@@ -65,34 +94,56 @@
   font-size: 20px;
   font-weight: lighter;
 }
+
 .container .description-container {
   width: 90%;
   line-break: normal;
 }
+
 .container .route-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 40px;
   width: 90%;
 }
+
 .container .route-container .route {
   background: #5C5C5C;
   height: 300px;
   width: 100%;
 }
+
 .container .route-container .route-interactive-buttons {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   gap: 20px;
 }
+
 .container .route-container .route-interactive-buttons .content-button {
   width: 200px;
   height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #5C5C5C;
   border-radius: 30px;
   border: none;
@@ -103,39 +154,64 @@
   line-height: 41px;
   letter-spacing: 0px;
 }
+
 .container .route-container .route-interactive-buttons .big {
   width: 300px;
   gap: 20px;
 }
+
 .container .images-of-route {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 90%;
   height: 400px;
   background: #5C5C5C;
   overflow-x: scroll;
   overflow-y: hidden;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .container .images-of-route .image {
   width: 350px;
   height: 350px;
   margin: 0 15px;
-  flex-grow: 1;
-  flex: none;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex: none;
+      flex: none;
   background: #C4C4C4;
 }
+
 .container .rating-container {
   width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   gap: 20px;
 }
+
 .container .rating-container .rating-interactive-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 20px;
 }
+
 .container .rating-container .rating-interactive-buttons .create-rating, .container .rating-container .rating-interactive-buttons .change-sort-order {
   width: auto;
   height: 75px;
@@ -144,37 +220,55 @@
   border: none;
   outline: none;
   background: #5C5C5C;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   gap: 20px;
   color: white;
   font-size: 14px;
 }
+
 .container .rating-container .rating-interactive-buttons .create-rating img, .container .rating-container .rating-interactive-buttons .change-sort-order img {
   width: 50px;
   height: 50px;
 }
+
 .container .rating-container .other-rating-of-route {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: 100%;
   gap: 40px;
 }
+
 .container .rating-container .other-rating-of-route .rating {
   width: 100%;
   padding: 20px;
   background: #5C5C5C;
 }
+
 .container .rating-container .other-rating-of-route .rating .user-data-and-rating {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 }
+
 .container .rating-container .other-rating-of-route .rating .user-data-and-rating .user-data, .container .rating-container .other-rating-of-route .rating .user-data-and-rating .rating-stars {
   width: 100%;
 }
+
 .container .rating-container .other-rating-of-route .rating .comment-to-rating {
   line-break: anywhere;
 }
-
 /*# sourceMappingURL=selfPost.css.map */

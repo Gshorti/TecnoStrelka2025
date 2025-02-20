@@ -8,4 +8,4 @@ document.getElementById('create-route-button').addEventListener('click', async (
             console.log(data)
         })
     })
-});
+})

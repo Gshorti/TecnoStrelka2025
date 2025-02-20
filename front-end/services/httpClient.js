@@ -7,17 +7,21 @@ export class HTTP_client {
         this.routes_API = 'https://www.kringeproduction.ru/routes/'
         this.headers = {
             'Accept': 'application/json',
-            'Content-Type': 'image/jpeg',
+            'Content-Type': 'application/json',
         };
     }
 
     async postImage(file) {
-        // let form = {
-        //     "image": file
-        // }
-
-        return await this.http.post(this.images_API, file, this.headers)
+        let formData = new FormData();
+        formData.append("image", file);
+    
+        const response = await this.http.post(this.images_API, formData, {
+            'Accept': 'application/json'
+        });
+    
+        return response;
     }
+    
 
     async getData() {
         return await this.http.get(this.images_API, this.headers)

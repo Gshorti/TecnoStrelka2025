@@ -13,24 +13,40 @@ header {
   background-color: #fff;
   width: auto;
   height: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 main {
   width: 100vw;
   height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: #254C59;
 }
 
 .main-div {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  -ms-grid-columns: (minmax(200px, auto))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   width: 80vw;
   background-color: #92A6AC;
   height: 95vh;
@@ -54,10 +70,11 @@ main {
 }
 
 .user-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 50px;
   border: none;
   background: none;
 }
-
 /*# sourceMappingURL=style.css.map */
