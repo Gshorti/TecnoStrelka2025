@@ -51,4 +51,11 @@ export class HTTP_client {
         return await this.http.post(this.routes_API, data, headers)
     }
 
+    async getRoutes() {
+        const response = await this.http.get(this.routes_API, {
+            "Accept": "application/json",
+        })
+
+        return response;
+    }
 }
