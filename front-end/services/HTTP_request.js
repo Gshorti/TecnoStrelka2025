@@ -4,16 +4,16 @@ export class HTTP_request {
             const response = await fetch(url, {
                 method: 'GET',
                 headers: headers,
-            })
+            });
 
             if (!response.ok) {
-                return Promise.reject(response)
+                return Promise.reject(response);
             }
 
-            const data = await response.json()
-            return data
+            const data = await response.json();
+            return data;
         } catch (error) {
-            return Promise.reject(new Error(error.message))
+            return Promise.reject(new Error(error.message));
         }
     }
 
@@ -22,21 +22,20 @@ export class HTTP_request {
             const response = await fetch(url, {
                 method: "POST",
                 headers: headers,
-                body: JSON.stringify(body),
-            })
-
+                body: body, // body теперь может быть FormData
+            });
+    
             if (!response.ok) {
-                return Promise.reject(response)
+                return Promise.reject(response);
             }
-
-            const data = await response.json()
-            return data
+    
+            const data = await response.json();
+            return data;
         } catch (error) {
-            return Promise.reject(new Error(error.message))
+            return Promise.reject(new Error(error.message));
         }
-    }
+    }    
 }
-
 
 // EXAMPLES
 
