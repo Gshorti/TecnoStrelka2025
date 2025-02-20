@@ -13,7 +13,8 @@ class Routes(models.Model):
     comments = models.ManyToManyField(Comment, null=True, blank=True)
     images = models.ManyToManyField(Image, null=True)
     history = models.JSONField(default=list, null=True)
-
+    description = models.TextField(null=False, default="YTNE")
+    private = models.BinaryField(default=False)
 
     def __str__(self):
         return self.name
