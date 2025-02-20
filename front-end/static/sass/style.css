@@ -34,7 +34,6 @@ main {
 }
 
 .main-div {
-  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, auto));
   width: 80vw;
@@ -62,8 +61,6 @@ main {
 }
 
 .user-button {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   align-items: center;
