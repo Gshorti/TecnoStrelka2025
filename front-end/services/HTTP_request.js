@@ -36,34 +36,3 @@ export class HTTP_request {
         }
     }    
 }
-
-// EXAMPLES
-
-// CREATING http request object
-// let http = new HTTP_request()
-
-// HEADERS Template
-// let headers = {
-//     'Accept': 'application/json',
-//     'Content-Type': 'application/json'
-// }
-
-// // DATA Template
-// let data = {
-//     'name': "qwerty",
-//     'data': {},
-//     'comments': [ 1 ],
-//     'images': [ 1 ]
-// }
-
-// // POST request
-// let post = http.post('https://www.kringeproduction.ru/routes/', data, headers)
-// post.then((data) => {
-//     console.log(data)
-// })
-
-// // GET request
-// let get = http.get('https://www.kringeproduction.ru/routes/', headers)
-// get.then((data) => {
-//     console.log(data)
-// })

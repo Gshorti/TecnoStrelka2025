@@ -44,6 +44,4 @@ function deleteImage(event) {
         imageContainer.querySelector('.create-image').src = basicURL_addImage;
         imageContainer.querySelector('.delete-image').style.display = 'none';
     }
-
-    console.log(filesArray)
 }

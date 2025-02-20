@@ -26,7 +26,6 @@ header {
 
 main {
   width: 100vw;
-  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,6 +38,11 @@ main {
   width: 80vw;
   background-color: #92A6AC;
   height: 90vh;
+}
+
+button {
+  background: none;
+  border: none;
 }
 
 .search {
@@ -76,10 +80,6 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.user-button {
-  display: flex;
 }
 
 .plus-button {
