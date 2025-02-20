@@ -25,7 +25,7 @@
                     <input id="route-name-input">
                 </span>
             <span class="route">
-                <button class="import">Импорт</button>
+                <button onclick="openPopup()" class="import">Импорт</button>
             </span>
             <span class="images-of-route" id="images-or-route"></span>
             <span class="description route-description">
@@ -52,25 +52,28 @@
 </main>
 <footer></footer>
 
-<div class="popup-import-route">
+<div class="popup-import-route" id="popup-import-route" style="display: none;">
+    <span onclick="closePopUp()" class="hide-popup">
+        <img src="../static/img/escape.svg">
+    </span>
     <h1>Импорт маршрута</h1>
     <div class="import-place-container">  
         <h3>Откуда импортировать:</h3>
-        <div class="import-bar">
-            <span>
+        <div class="import-bar" onwheel="wheelOnBar(event)">
+            <button>
                 <h4>OSM</h4>
-            </span>
-            <span>
+            </button>
+            <button>
                 <h4>Google Map</h4>
-            </span>
-            <span>
+            </button>
+            <button>
                 <h4>Yandex Map</h4>
-            </span>
+            </button>
         </div>
     </div>
     <div class="link-container">
         <h3>Ссылка:</h3>
-        <input class="link">
+        <input class="link" spellcheck="false">
     </div>
     <button class="import-route-button">Импорт</button>
 </div>
@@ -88,5 +91,7 @@
 
 
 </body>
+
+<script src="importRoute.js"></script>
 <script src="imageAddScript.js"></script>
 </html>
