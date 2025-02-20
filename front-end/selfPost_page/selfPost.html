@@ -7,19 +7,28 @@
     <link rel="stylesheet" href="selfPost.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+          rel="stylesheet">
+
+    <script type="module" src="getPostData.js"></script>
 </head>
 <body>
 <header>
-    <button class="home-button"><img src="../static/img/Home.svg" class="home-img"></button>
-    <input type="text" class="search" placeholder="Search">
-    <button class="user-button"><img src="../static/img/User.svg" class="user-img"></button>
+    <a href="../index.html">
+        <button class="home-button"><img src="../static/img/Home.svg" class="header-img"></button>
+    </a>
+    <a href="../createPost_page/createPost.html">
+        <button class="../plus-button"><img src="../static/img/plus.svg" class="header-img"></button>
+    </a>
+    <a href="#">
+        <button class="user-button"><img src="../static/img/User.svg" class="header-img"></button>
+    </a>
 </header>
 <main>
     <div class="container">
         <div class="main-info-container">
             <span class="main-photo-of-route">
-                <img src="stock-photo-219973977-960x1000.jpg" width="300" height="300" alt="#">
+                <img src="#" id="main-image" width="300" height="300" alt="#">
             </span>
             <span class="text-info">
                 <span class="name-of-route">
@@ -38,14 +47,15 @@
         </div>
 
         <div class="description-container">
-            <h3>Описание Описание Описание Описание ОписаниеОписаниеОписание Описание Описание Описание Описание Описание Описание</h3>
+            <h3>Описание Описание Описание Описание ОписаниеОписаниеОписание Описание Описание Описание Описание
+                Описание Описание</h3>
         </div>
 
         <div class="route-container">
             <span class="route">
 
 <!--                TODO
-                     абсолютно ВСЁ связанное с маршрутом -->
+                     абсолютно ВСЁ связанное с маршрутом на Захаре -->
 
             </span>
             <span class="route-interactive-buttons">
@@ -62,16 +72,7 @@
             </span>
         </div>
 
-        <div class="images-of-route">
-            <div class="image">
-                <img src="" alt="">
-            </div>
-            <div class="image">
-                <img src="" alt="">
-            </div>
-            <div class="image">
-                <img src="" alt="">
-            </div>
+        <div class="images-of-route" id="route-images-container">
         </div>
 
         <div class="rating-container">
@@ -80,6 +81,8 @@
                 <button class="create-rating">
                     <img width="25" height="25" src="../static/img/star.svg">
                     <h2>Оценить</h2>
+<!--                    TODO-->
+<!--                     Систему оценок!!!!-->
                 </button>
                 <button class="change-sort-order">
                     <img width="25" height="25" src="../static/img/GoodCommentsFirst.svg">
@@ -87,48 +90,39 @@
                 </button>
             </div>
 
-            <div class="other-rating-of-route">
-                <span class="rating">
-                    <span class="user-data-and-rating">
-                        <div class="user-data">
-                            <img src="">
-                            <h1>Имя пользователя</h1>
-                        </div>
-                        <div class="rating-stars">
-                            <img src="../static/img/ratedStar.svg">
-                            <img src="../static/img/ratedStar.svg">
-                            <img src="../static/img/ratedStar.svg">
-                            <img src="../static/img/ratedStar.svg">
-                            <img src="../static/img/ratedStar.svg">
-                        </div>
-                    </span>
-                    <span class="comment-to-rating">
-                        <h3>Мне очень понравилось место, оно прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!прекрасно!!!!!!!!!!!!!!!!!!!!!!!!!!!!!</h3>
-                    </span>
-                </span>
-                <span class="rating">
-                    <span class="user-data-and-rating">
-                        <div class="user-data">
-                            <img src="">
-                            <h1>Имя пользователя</h1>
-                        </div>
-                        <div class="rating-stars">
-                            <img src="../static/img/ratedStar.svg">
-                            <img src="../static/img/unratedStar.svg">
-                            <img src="../static/img/unratedStar.svg">
-                            <img src="../static/img/unratedStar.svg">
-                            <img src="../static/img/unratedStar.svg">
-                        </div>
-                    </span>
-                    <span class="comment-to-rating">
-                        <h3>ФУУУ там нет KPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBAKPTUBA</h3>
-                    </span>
-                </span>
-            </div>
+            <div class="other-rating-of-route" id="rating-of-route-container"></div>
         </div>
 
     </div>
 </main>
 <footer></footer>
+
+<template id="image-template">
+    <div class="image">
+        <img src="#">
+    </div>
+</template>
+
+<template id="comment-template">
+    <span class="rating">
+        <span class="user-data-and-rating">
+            <div class="user-data">
+                <h1 id="user-name">Имя пользователя</h1>
+            </div>
+            <div class="rating-stars">
+                <img class="rating-star" src="../static/img/unratedStar.svg">
+                <img class="rating-star" src="../static/img/unratedStar.svg">
+                <img class="rating-star" src="../static/img/unratedStar.svg">
+                <img class="rating-star" src="../static/img/unratedStar.svg">
+                <img class="rating-star" src="../static/img/unratedStar.svg">
+            </div>
+        </span>
+        <span class="comment-to-rating">
+            <h3 id="comment-text"></h3>
+        </span>
+    </span>
+</template>
+
+<!--<script src="selfPost.js"></script>-->
 </body>
 </html>
