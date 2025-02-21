@@ -40,6 +40,7 @@ document.getElementById('create-route-button').addEventListener('click', async (
         "private": isPrivate, //Тут должен быть бул
     }
 
+    sendImages()
     generateIndexOfImages(data)
 })
 
@@ -53,13 +54,12 @@ function sendImages() {
 
 function generateIndexOfImages(dataObject) {
     let imagesCount = filesArray.length
-    let imagesIds = []
     http.getImages().then(data => {
+        let imagesIds = []
         let lastImg = data.at(-1).id
         for (let i = 0; i < imagesCount; i++) {
             imagesIds.push(Number(lastImg + 1))
         }
-        sendImages()
         return imagesIds
     }).then(
         data => {

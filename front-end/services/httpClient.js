@@ -47,7 +47,6 @@ export class HTTP_client {
     async getData() {
         let headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
         }
         return this.http.get(this.routes_API, headers)
     }
