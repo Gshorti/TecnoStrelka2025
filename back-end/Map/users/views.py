@@ -19,4 +19,5 @@ class UserView(ModelViewSet):
 
     def create(self, request, *args, **kwargs):
         self.authentication_classes = []
+        self.permission_classes = []
         super().create(self, request, *args, **kwargs)
