@@ -16,3 +16,7 @@ class UserView(ModelViewSet):
     permission_classes = [IsAuthenticated, UpdateUserPermission]
     filterset_fields = ('name')
     search_fields = ['name']
+
+    def create(self, request, *args, **kwargs):
+        self.authentication_classes = []
+        super().create(self, request, *args, **kwargs)
