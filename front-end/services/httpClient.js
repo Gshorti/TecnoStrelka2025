@@ -6,6 +6,21 @@ export class HTTP_client {
         this.images_API = 'https://www.kringeproduction.ru/images/'
         this.routes_API = 'https://www.kringeproduction.ru/routes/'
         this.comments_API = 'https://www.kringeproduction.ru/comments/'
+        this.users_API = 'https://www.kringeproduction.ru/users/'
+    }
+
+    setHeaders(current_headers) {
+        const LS_username = localStorage.getItem('username')
+        const LS_password = localStorage.getItem('password')
+
+        if (LS_username === null || LS_password === null) {
+            throw new Error('No username or password')
+        }
+
+        current_headers["X-USERNAME"] = String(LS_username)
+        current_headers["X-PASSWORD"] = String(LS_password)
+
+        return current_headers
     }
 
     async postImage(file) {
@@ -52,9 +67,11 @@ export class HTTP_client {
     }
 
     async postNewRoute(routeData) {
-        
-        let headers = {'Accept': 'application/json',
-            'Content-Type': 'application/json'} //Когда body строится при помощи formdata хедеры не нужны, а когда при помощи JSON.stringfy(объект) то нужны.  
+
+        let headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        } //Когда body строится при помощи formdata хедеры не нужны, а когда при помощи JSON.stringfy(объект) то нужны.
 
         return this.http.post(this.routes_API, routeData, headers)
     }
@@ -64,6 +81,36 @@ export class HTTP_client {
             "Accept": "application/json",
         })
 
-        return response;
+        return response
+    }
+
+    async getUser(name) {
+        let headers = {'Accept': 'application/json'}
+        try {
+            headers = this.setHeaders(headers)
+        } catch (e) {
+            throw new Error(e.message)
+        }
+
+        return this.http.get(`${this.users_API}?name=${name}`, headers)
+    }
+
+    async createUser(name, email, password) {
+        let headers = {'Accept': 'application/json'}
+        try {
+            headers = this.setHeaders(headers)
+        } catch (e) {
+            throw new Error(e.message)
+        }
+
+        let data = {
+            "username": name,
+            "password": password,
+            "email": email
+        }
+
+        console.log(headers)
+
+        return this.http.post(this.users_API, JSON.stringify(data), headers)
     }
 }
