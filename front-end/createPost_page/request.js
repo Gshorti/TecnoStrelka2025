@@ -30,19 +30,20 @@ document.getElementById('create-route-button').addEventListener('click', async (
         isPrivate = true
     }
 
-    let dataObject = {
+    let dataObject = {}
+    generateIndexOfImages(dataObject)
+    
+    //let comments = [] Первоночально при создании маршрута комментариев к нему быть не должно их нужн одобавлять потом. 
+
+    let data = JSON.stringify({
         "name": routeName,
         "description": routeDescription,
-        "data": JSON.stringify({
-            "data": 'YandexAPI_Data'
-        }),
-        // "history": [],
-        "private": String(isPrivate),
-        "comments": [],
-        "images": []
-    }
-
-    generateIndexOfImages(dataObject)
+        "images": dataObject.images,
+        "data": JSON.stringify({"data": 'YandexAPI_Data'}),
+        "private": isPrivate, //Тут должен быть бул
+    })
+        generatePost(data)
+   
 })
 
 function generateIndexOfImages(dataObject) {
@@ -54,16 +55,18 @@ function generateIndexOfImages(dataObject) {
                     ids.push(val.id)
                 })
             }
+            console.log("ids: "+ids)
             return ids
         }
     ).then(
         value => {
             dataObject.images = value
-            console.log(dataObject)
-            generatePost(dataObject)
+            console.log("dataobj" + dataObject)
         }
     )
 }
+
+
 
 function generatePost(dataObject) {
     console.log(dataObject)

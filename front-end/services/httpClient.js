@@ -53,20 +53,11 @@ export class HTTP_client {
     }
 
     async postNewRoute(routeData) {
-        let formData = new FormData()
-        formData.append("name", routeData.name)
-        formData.append("description", routeData.description)
-        formData.append("image", routeData.image)
-        formData.append("comments", routeData.comments)
-        formData.append("data", routeData.data)
-        formData.append("private", routeData.private)
-        formData.append("history", routeData.history)
+        
+        let headers = {'Accept': 'application/json',
+            'Content-Type': 'application/json'} //Когда body строится при помощи formdata хедеры не нужны, а когда при помощи JSON.stringfy(объект) то нужны.  
 
-        let headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        }
-        return this.http.post(this.routes_API, formData, headers)
+        return this.http.post(this.routes_API, routeData, headers)
     }
 
     async getRoutes() {
