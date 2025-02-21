@@ -12,15 +12,24 @@ export class HTTP_client {
         let formData = new FormData();
         formData.append("image", file);
 
-        const response = await this.http.post(this.images_API, formData, {
+        const response = this.http.post(this.images_API, formData, {
             'Accept': 'application/json'
         });
 
-        return response;
+        return await response
+    }
+
+    async postImages(filesArray) {
+        let outputData = []
+        for (let i = 0; i < filesArray.length; i++) {
+            let file = filesArray[i]
+            outputData.push(this.postImage(file))
+        }
+        return await outputData
     }
 
     async getImages() {
-        const response = await this.http.get(this.images_API, {
+        const response = this.http.get(this.images_API, {
             'Accept': 'application/json'
         })
 
@@ -28,7 +37,7 @@ export class HTTP_client {
     }
 
     async getComments() {
-        const response = await this.http.get(this.comments_API, {
+        const response = this.http.get(this.comments_API, {
             'Accept': 'application/json'
         })
 
@@ -40,19 +49,28 @@ export class HTTP_client {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-        return await this.http.get(this.routes_API, headers)
+        return this.http.get(this.routes_API, headers)
     }
 
-    async postRoutes(data) {
+    async postNewRoute(routeData) {
+        let formData = new FormData()
+        formData.append("name", routeData.name)
+        formData.append("description", routeData.description)
+        formData.append("image", routeData.image)
+        formData.append("comments", routeData.comments)
+        formData.append("data", routeData.data)
+        formData.append("private", routeData.private)
+        formData.append("history", routeData.history)
+
         let headers = {
             'Accept': 'application/json',
-            // 'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
         }
-        return await this.http.post(this.routes_API, data, headers)
+        return this.http.post(this.routes_API, formData, headers)
     }
 
     async getRoutes() {
-        const response = await this.http.get(this.routes_API, {
+        const response = this.http.get(this.routes_API, {
             "Accept": "application/json",
         })
 

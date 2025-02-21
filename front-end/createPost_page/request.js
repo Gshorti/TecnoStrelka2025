@@ -3,20 +3,12 @@ import {HTTP_client} from '../services/httpClient.js';
 let http = new HTTP_client();
 
 document.getElementById('create-route-button').addEventListener('click', async (e) => {
-    let imagesId = []
-    filesArray.forEach((file) => {
-        http.postImage(file).then((data) => {
-            imagesId.push(data.id)
-        })
-    })
-
-    generatePost(imagesId)
-})
-
-function generatePost(imagesOnPostID) {
-
     let routeName = document.getElementById('route-name-input').value
     let routeDescription = document.getElementById('route-description-textarea').value
+    let routePrivate = document.getElementById('route-availability-input').value
+    let isPrivate = false
+
+
     // let routeData = document TODO
     //                           Захар должен Yandex Map API сделать!!!!
 
@@ -28,21 +20,55 @@ function generatePost(imagesOnPostID) {
         showErrorPopup()
         return
     }
-    if (imagesOnPostID === []) {
+    if (filesArray === []) {
         showErrorPopup()
         return
     }
-
-    console.log(imagesOnPostID)
-
-    let object = {
-        "name": routeName,
-        "data": {},
-        "comments": [],
-        "images": imagesOnPostID
+    if (routePrivate === 'Общедоступный') {
+        isPrivate = false
+    } else {
+        isPrivate = true
     }
 
-    http.postRoutes(JSON.stringify(object)).then((data) => {
+    let dataObject = {
+        "name": routeName,
+        "description": routeDescription,
+        "data": JSON.stringify({
+            "data": 'YandexAPI_Data'
+        }),
+        // "history": [],
+        "private": String(isPrivate),
+        "comments": [],
+        "images": []
+    }
+
+    generateIndexOfImages(dataObject)
+})
+
+function generateIndexOfImages(dataObject) {
+    http.postImages(filesArray).then(
+        data => {
+            let ids = []
+            for (let i = 0; i < data.length; i++) {
+                data[i].then(val => {
+                    ids.push(val.id)
+                })
+            }
+            return ids
+        }
+    ).then(
+        value => {
+            dataObject.images = value
+            console.log(dataObject)
+            generatePost(dataObject)
+        }
+    )
+}
+
+function generatePost(dataObject) {
+    console.log(dataObject)
+
+    http.postNewRoute(dataObject).then((data) => {
         console.log(data)
-    })
+    }).catch((err) => console.error(err))
 }
