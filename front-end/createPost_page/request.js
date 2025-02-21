@@ -30,38 +30,41 @@ document.getElementById('create-route-button').addEventListener('click', async (
         isPrivate = true
     }
 
-    let dataObject = {}
-    generateIndexOfImages(dataObject)
-    
-    //let comments = [] Первоночально при создании маршрута комментариев к нему быть не должно их нужн одобавлять потом. 
+    //let comments = [] Первоночально при создании маршрута комментариев к нему быть не должно их нужн одобавлять потом.
 
-    let data = JSON.stringify({
+    let data = {
         "name": routeName,
         "description": routeDescription,
-        "images": dataObject.images,
+        "images": [],
         "data": JSON.stringify({"data": 'YandexAPI_Data'}),
         "private": isPrivate, //Тут должен быть бул
-    })
-        generatePost(data)
-   
+    }
+
+    generateIndexOfImages(data)
 })
 
-function generateIndexOfImages(dataObject) {
+function sendImages() {
     http.postImages(filesArray).then(
         data => {
-            let ids = []
-            for (let i = 0; i < data.length; i++) {
-                data[i].then(val => {
-                    ids.push(val.id)
-                })
-            }
-            console.log("ids: "+ids)
-            return ids
+            console.log(data)
         }
-    ).then(
-        value => {
-            dataObject.images = value
-            console.log("dataobj" + dataObject)
+    )
+}
+
+function generateIndexOfImages(dataObject) {
+    let imagesCount = filesArray.length
+    let imagesIds = []
+    http.getImages().then(data => {
+        let lastImg = data.at(-1).id
+        for (let i = 0; i < imagesCount; i++) {
+            imagesIds.push(Number(lastImg + 1))
+        }
+        sendImages()
+        return imagesIds
+    }).then(
+        data => {
+            dataObject.images = data
+            generatePost(dataObject)
         }
     )
 }
@@ -71,7 +74,7 @@ function generateIndexOfImages(dataObject) {
 function generatePost(dataObject) {
     console.log(dataObject)
 
-    http.postNewRoute(dataObject).then((data) => {
+    http.postNewRoute(JSON.stringify(dataObject)).then((data) => {
         console.log(data)
     }).catch((err) => console.error(err))
 }
