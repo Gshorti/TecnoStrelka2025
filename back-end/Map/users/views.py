@@ -12,3 +12,5 @@ class UserView(ModelViewSet):
     serializer_class = US
     authentication_classes = [KPtubeAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly, UpdateUserPermission]
+    filterset_fields = ('name')
+    search_fields = ['name']
