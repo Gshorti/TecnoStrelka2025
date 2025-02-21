@@ -122,9 +122,16 @@
   width: 350px;
   height: 350px;
   margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
   flex: none;
   background: #C4C4C4;
+}
+.container .images-of-route .image img {
+  width: 90%;
+  height: 90%;
 }
 .container .rating-container {
   width: 90%;

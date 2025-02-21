@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Creaive_router</title>
     <link rel="stylesheet" href="static/sass/style.css">
+    <script type="module" src="request.js"></script>
 </head>
 <body>
     <header>
-        <button class="home-button"><img src="./img/Home.svg" class="header-img"></button>
-        <input type="text" class="search" placeholder="Search">
-        <button class="plus-button"><img src="./img/plus.svg" class="header-img"></button>
-        <button class="user-button"><img src="./img/User.svg" class="header-img"></button>
+        <a href="#"><button class="home-button"><img src="./static/img/Home.svg" class="header-img"></button></a>
+        <a href="./createPost_page/createPost.html"><button class="plus-button"><img src="./static/img/plus.svg" class="header-img"></button></a>
     </header>
     <main>
         <div class="main-div" id="main-div">
-            <div class="route" id="route"></div>
+            <ul class="route" id="route"></ul>
         </div>
     </main>
     <footer></footer>
