@@ -12,15 +12,24 @@ export class HTTP_client {
         let formData = new FormData();
         formData.append("image", file);
 
-        const response = await this.http.post(this.images_API, formData, {
+        const response = this.http.post(this.images_API, formData, {
             'Accept': 'application/json'
         });
 
-        return response;
+        return await response
+    }
+
+    async postImages(filesArray) {
+        let outputData = []
+        for (let i = 0; i < filesArray.length; i++) {
+            let file = filesArray[i]
+            outputData.push(this.postImage(file))
+        }
+        return await outputData
     }
 
     async getImages() {
-        const response = await this.http.get(this.images_API, {
+        const response = this.http.get(this.images_API, {
             'Accept': 'application/json'
         })
 
@@ -28,7 +37,7 @@ export class HTTP_client {
     }
 
     async getComments() {
-        const response = await this.http.get(this.comments_API, {
+        const response = this.http.get(this.comments_API, {
             'Accept': 'application/json'
         })
 
@@ -38,21 +47,20 @@ export class HTTP_client {
     async getData() {
         let headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
         }
-        return await this.http.get(this.routes_API, headers)
+        return this.http.get(this.routes_API, headers)
     }
 
-    async postRoutes(data) {
-        let headers = {
-            'Accept': 'application/json',
-            // 'Content-Type': 'application/json'
-        }
-        return await this.http.post(this.routes_API, data, headers)
+    async postNewRoute(routeData) {
+        
+        let headers = {'Accept': 'application/json',
+            'Content-Type': 'application/json'} //Когда body строится при помощи formdata хедеры не нужны, а когда при помощи JSON.stringfy(объект) то нужны.  
+
+        return this.http.post(this.routes_API, routeData, headers)
     }
 
     async getRoutes() {
-        const response = await this.http.get(this.routes_API, {
+        const response = this.http.get(this.routes_API, {
             "Accept": "application/json",
         })
 
