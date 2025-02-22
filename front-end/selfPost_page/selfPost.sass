@@ -1,15 +1,6 @@
+$color-of-segments: #254C59
+
 .container
-  display: flex
-  flex-direction: column
-  align-items: center
-  padding-top: 50px
-  width: 80vw
-  background-color: #92A6AC
-  min-height: 95vh
-  color: white
-  gap: 50px
-
-
   .main-info-container
     width: 90%
     display: grid
@@ -57,7 +48,7 @@
         align-items: flex-end
 
         button
-          background: #5C5C5C
+          background: $color-of-segments
           width: 260px
           height: 50px
           border-radius: 30px
@@ -80,7 +71,7 @@
     width: 90%
 
     .route
-      background: #5C5C5C
+      background: $color-of-segments
       height: 300px
       width: 100%
 
@@ -96,7 +87,7 @@
         display: flex
         justify-content: center
         align-items: center
-        background: #5C5C5C
+        background: $color-of-segments
         border-radius: 30px
         border: none
         outline: none
@@ -113,28 +104,65 @@
   .images-of-route
     display: flex
     width: 90%
-    height: 400px
-    background: #5C5C5C
+    padding: 10px
+    max-height: 400px
+    background: $color-of-segments
     overflow-x: scroll
     overflow-y: hidden
     flex-direction: row
     justify-content: flex-start
     align-items: center
+    border-radius: 25px
+
+    &::-webkit-scrollbar
+      display: none
 
     .image
-      width: 350px
-      height: 350px
-      margin: 0 15px
+      position: relative
+      width: 30vw
+      height: 30vw
+      max-width: 300px
+      max-height: 300px
+      margin: 10px
+      flex-grow: 1
+      flex: none
+      background: #3d6d7c
       display: flex
       justify-content: center
       align-items: center
-      flex-grow: 1
-      flex: none
-      background: #C4C4C4
+      border-radius: 15px
+      overflow: hidden
 
       img
         width: 90%
         height: 90%
+        position: absolute
+        border-radius: 5px
+        z-index: 1
+
+      .delete-image
+        width: 50px
+        height: 50px
+        display: none
+        position: absolute
+        right: 5%
+        top: 5%
+        z-index: 3
+
+      .label-input-file
+        width: 100%
+        height: 100%
+        z-index: 2
+
+        .file-input
+          display: none
+          width: 100%
+          height: 100%
+          background: none
+          appearance: none
+
+          &::file-selector-button
+            display: none
 
   .rating-container
     width: 90%
@@ -152,7 +180,7 @@
         border-radius: 40px
         border: none
         outline: none
-        background: #5C5C5C
+        background: $color-of-segments
         display: flex
         align-items: center
         justify-content: center

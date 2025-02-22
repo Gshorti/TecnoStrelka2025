@@ -9,8 +9,7 @@ function newTemplatePost(link, data) {
     const clone = document.importNode(template.content, true)
     clone.querySelector('.name-of-post').innerText = data.name
     clone.querySelector('img').src = link
-    clone.querySelector('#systemData').innerText = data
-    console.log(data)
+    clone.querySelector('#systemData').innerText = JSON.stringify(data)
     mainDiv.appendChild(clone)
 }
 

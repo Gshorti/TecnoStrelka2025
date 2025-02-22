@@ -8,16 +8,6 @@ function closePopUp() {
     importPopup.style.display = 'none'
 }
 
-function wheelOnBar(event) {
-    event.preventDefault()
-
-    if (event.deltaY > 0) {
-        event.currentTarget.scrollLeft += 100
-    } else {
-        event.currentTarget.scrollLeft -= 100
-    }
-}
-
 function showErrorPopup() {
     errorPopup.style.display = 'flex'
 }

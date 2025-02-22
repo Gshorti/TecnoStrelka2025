@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="../static/sass/style.css">
+    <link rel="stylesheet" href="../static/sass/popupStyles.css">
     <link rel="stylesheet" href="selfPost.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,9 +15,15 @@
 </head>
 <body>
 <header>
-    <a href="../index.html"><button class="home-button"><img src="../static/img/Home.svg" class="header-img"></button></a>
-    <a href="../createPost_page/createPost.html"><button class="../plus-button"><img src="../static/img/plus.svg" class="header-img"></button></a>
-    <a href="../account/account.html"><button class="user-button"><img src="../static/img/User.svg" class="header-img"></button></a>
+    <a href="../index.html">
+        <button class="home-button"><img src="../static/img/Home.svg" class="header-img"></button>
+    </a>
+    <a href="../createPost_page/createPost.html">
+        <button class="../plus-button"><img src="../static/img/plus.svg" class="header-img"></button>
+    </a>
+    <a href="../account/account.html">
+        <button class="user-button"><img src="../static/img/User.svg" class="header-img"></button>
+    </a>
 </header>
 <main>
     <div class="container">
@@ -26,7 +33,7 @@
             </span>
             <span class="text-info">
                 <span class="name-of-route">
-                    <h1>Название маршрута</h1>
+                    <h1 id="route-name">Название маршрута</h1>
                 </span>
                 <span class="if-visit-route">
                     <input id="checkbox-if-visit" type="checkbox">
@@ -41,7 +48,8 @@
         </div>
 
         <div class="description-container">
-            <h3>Описание Описание Описание Описание ОписаниеОписаниеОписание Описание Описание Описание Описание
+            <h3 id="route-description">Описание Описание Описание Описание ОписаниеОписаниеОписание Описание Описание
+                Описание Описание
                 Описание Описание</h3>
         </div>
 
@@ -66,7 +74,7 @@
             </span>
         </div>
 
-        <div class="images-of-route" id="route-images-container">
+        <div class="images-of-route" id="route-images-container" onwheel="wheelOnBar(event)">
         </div>
 
         <div class="rating-container">
@@ -75,8 +83,8 @@
                 <button class="create-rating">
                     <img width="25" height="25" src="../static/img/star.svg">
                     <h2>Оценить</h2>
-<!--                    TODO-->
-<!--                     Систему оценок!!!!-->
+                    <!--                    TODO-->
+                    <!--                     Систему оценок!!!!-->
                 </button>
                 <button class="change-sort-order">
                     <img width="25" height="25" src="../static/img/GoodCommentsFirst.svg">
@@ -117,6 +125,28 @@
     </span>
 </template>
 
-<!--<script src="selfPost.js"></script>-->
+<div class="popup reaction-popup" id="reaction-popup">
+    <span onclick="closeErrorPopUp()" class="hide-popup">
+        <img src="../static/img/escape.svg">
+    </span>
+    <span class="stars-reaction">
+        <h3>Оцените маршрут</h3>
+        <span>
+            <img src="../static/img/unratedStar.svg">
+            <img src="../static/img/unratedStar.svg">
+            <img src="../static/img/unratedStar.svg">
+            <img src="../static/img/unratedStar.svg">
+            <img src="../static/img/unratedStar.svg">
+        </span>
+    </span>
+    <span class="text-of-reaction-container">
+        <h3>Расскажите ещё:</h3>
+        <textarea class="text-of-reaction">
+
+        </textarea>
+    </span>
+</div>
+
+<script src="../services/scroll.js"></script>
 </body>
 </html>
