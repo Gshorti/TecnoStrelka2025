@@ -34,6 +34,22 @@ main {
   background-color: #254C59;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+  width: 80vw;
+  min-height: 90vh;
+  overflow: hidden;
+  background-color: #92A6AC;
+  gap: 50px;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.3px;
+}
+
 .main-div {
   display: grid;
   grid-template-columns: repeat(2, minmax(200px, auto));

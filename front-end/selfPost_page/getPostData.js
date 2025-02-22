@@ -46,6 +46,7 @@ function loadComment(data, commentId) {
 }
 
 function postOnDocumentSetter(object) {
+    console.log(object)
     object.forEach((id) => {
         let images = http.getImages()
         images.then(data => {
@@ -67,15 +68,16 @@ window.onload = function () {
     // TODO
     //  Захар обязан сделать отправку с главной страницы
 
-    let selectedPost = localStorage.getItem('selectedPost')
+    localStorage.setItem('selectedPost', JSON.stringify(object))
     let object = {
         "id": 1,
         "name": "fdfdf",
         "data": {},
         "comments": [1, 2, 3, 4],
-        "images": [1, 8]
+        "images": [1, 8, 3, 2]
     }
-    localStorage.setItem('selectedPost', JSON.stringify(object))
+    let selectedPost = localStorage.getItem('selectedPost')
+    console.log(object)
     if (selectedPost) {
         let parsedPost = JSON.parse(selectedPost)
         postOnDocumentSetter(parsedPost.images)
