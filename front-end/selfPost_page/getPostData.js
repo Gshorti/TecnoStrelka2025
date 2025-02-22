@@ -24,14 +24,10 @@ function newTemplateComment(name, text, likes) {
     document.getElementById('rating-of-route-container').appendChild(clone)
 }
 
-function loadImage(data, imageId, imagesArray) {     /// USING IT
+function loadImage(data, imageId) {     /// USING IT
     for (let i = 0; i < data.length; i++) {
-        if (data[i].id === imageId && imagesArray.indexOf(imageId) !== 0) {
+        if (data[i].id === imageId) {
             data[i].image = String(data[i].image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
-            newTemplateImage(data[i].image)
-        } else if (data[i].id === imageId && imagesArray.indexOf(imageId) === 0) {
-            data[i].image = String(data[i].image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
-            document.getElementById('main-image').src = data[i].image
             newTemplateImage(data[i].image)
         }
     }
@@ -49,7 +45,7 @@ function postOnDocumentSetter(object) {             /// USING IT
     object.forEach((id) => {
         let images = http.getImages()
         images.then(data => {
-            loadImage(data, id, object)
+            loadImage(data, id)
         })
     })
 }
@@ -69,8 +65,18 @@ window.onload = function () {
 
     let selectedPost = localStorage.getItem('selectedPost')
 
+    let mainImage = localStorage.getItem('postMainImage')
+    let postName = localStorage.getItem('postName')
+    let postDescription = localStorage.getItem('postDescription')
+
+    document.getElementById('main-image').src = mainImage
+    document.getElementById('route-name').innerText = postName
+
     if (selectedPost) {
         let parsedPost = JSON.parse(selectedPost)
+        console.log(parsedPost.description)
+        document.getElementById('route-description').innerText = String(parsedPost.description)
+        console.log(parsedPost)
         postOnDocumentSetter(parsedPost.images)
         commentsOnDocumentSetter(parsedPost.comments)
     }
