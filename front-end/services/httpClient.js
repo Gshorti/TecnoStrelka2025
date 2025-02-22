@@ -93,7 +93,7 @@ export class HTTP_client {
             throw new Error(e.message)
         }
 
-        return this.http.get(`${this.users_API}`, headers)
+        return this.http.get(`${this.users_API}?name=${name}`, headers)
     }
 
     async createUser(name, password, email) {
