@@ -1,6 +1,7 @@
 let registration = document.getElementById('registration')
 let signIn = document.getElementById('sign-in')
 let emailTag = document.getElementById('email-of-user-container')
+let errorPopup = document.getElementById('error-popup')
 
 function openRegistration() {
     emailTag.classList.remove('hidden')
@@ -20,4 +21,9 @@ function openSignIn() {
         registration.style.display = 'none'
         signIn.style.display = 'flex'
     }, 200)
+}
+
+
+function closeErrorPopUp() {
+    errorPopup.style.display = 'none'
 }
