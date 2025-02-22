@@ -4,17 +4,15 @@ let http = new HTTP_client();
 
 window.onload = function() {
     http.getRoutes().then((res) => {
-        console.log(` goida: ${res} `);
         if (!res) {
-            console.log('GOIDA NET DERMO!!!')
-            console.log('GOIDA NET DERMO!!!')
+            console.log('Bad request');
         }
-        const routeElement = document.getElementById('route')
+        const routeElement = document.getElementById('main-div')
         routeElement.innerHTML = ''
 
         res.forEach((item) => {
             console.log(item.name)
-            routeElement.innerHTML += `<li>${item.name}</li>`
+            routeElement.innerHTML += `<div class="route-div">${item.name}</div>`
         })
     })
 }
