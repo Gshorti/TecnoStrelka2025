@@ -19,7 +19,7 @@ class UserView(ModelViewSet):
     authentication_classes = [KPtubeAuthentication]
     permission_classes = [IsAuthenticated, UpdateUserPermission]
     filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ('name')
+    filterset_fields = ["name"]
     search_fields = ['name']
 
 class CreateUser(CreateAPIView):
