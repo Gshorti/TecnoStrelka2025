@@ -1,6 +1,6 @@
-import {HTTP_client} from '../services/httpClient.js';
+import {HTTP_client} from '../services/httpClient.js'
 
-let http = new HTTP_client();
+let http = new HTTP_client()
 
 document.getElementById('create-route-button').addEventListener('click', async (e) => {
     let routeName = document.getElementById('route-name-input').value

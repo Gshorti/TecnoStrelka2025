@@ -1,0 +1,91 @@
+.container
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding-top: 50px
+  width: 80vw
+  min-height: 87vh
+  overflow: hidden
+  background-color: #92A6AC
+  gap: 50px
+  color: white
+  font-family: "Roboto", sans-serif
+  font-weight: 300
+  letter-spacing: 0.3px
+
+  .form
+    width: 300px
+    height: 600px
+    background: #254C59
+    border-radius: 30px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    .registration, .sign-in
+      width: 90%
+      height: 90%
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      gap: 20px
+
+      .name-of-user-container, .password-of-user-container, .email-of-user-container
+        width: 90%
+        height: 70px
+
+        input
+          width: 90%
+          height: 30px
+          padding: 10px
+          border: none
+          outline: none
+          border-radius: 15px
+          background: #E7E7E7
+
+      button
+        border: none
+        outline: none
+        width: 90%
+        height: 50px
+        padding: 10px
+        border-radius: 30px
+        background: #E7E7E7
+        transition: filter 0.3s
+
+        &:hover
+          filter: brightness(0.9)
+
+      p
+        text-align: center
+        width: 100%
+        height: 30px
+
+.visible
+  animation: show-container forwards 0.2s ease-out
+
+.hidden
+  animation: hide-container forwards 0.2s ease-out
+
+
+@keyframes hide-container
+  from
+    opacity: 1
+    transform: translateY(0)
+    height: 70px
+  to
+    opacity: 0
+    transform: translateY(-20px)
+    height: 0
+
+@keyframes show-container
+  from
+    opacity: 0
+    transform: translateY(-20px)
+    height: 0
+  to
+    opacity: 1
+    transform: translateY(0)
+    height: 70px

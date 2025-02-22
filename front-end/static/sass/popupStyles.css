@@ -1,0 +1,28 @@
+.popup {
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  padding: 20px;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 400px;
+  background: #5C5C5C;
+  border-radius: 30px;
+  z-index: 3;
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.3);
+}
+.popup .hide-popup {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.popup .hide-popup img {
+  width: 30px;
+  height: 30px;
+}
+
+/*# sourceMappingURL=popupStyles.css.map */
