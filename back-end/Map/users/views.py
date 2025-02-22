@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from Map.auth import KPtubeAuthentication
 from .models import User
 from .permissions import UpdateUserPermission
-from .serializers import US
+from .serializers import US, CreateUserSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 
@@ -21,4 +21,4 @@ class UserView(ModelViewSet):
 
 class CreateUser(CreateAPIView):
     queryset = User.objects.all()
-    serializer_class = US
+    serializer_class = CreateUserSerializer

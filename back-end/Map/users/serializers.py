@@ -6,3 +6,10 @@ class US(ModelSerializer):
     class Meta:
         model = User
         fields = ('name', 'email', 'routes')
+
+
+class CreateUserSerializer(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
