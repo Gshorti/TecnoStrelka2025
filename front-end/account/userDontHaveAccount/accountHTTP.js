@@ -1,4 +1,4 @@
-import {HTTP_client} from '../services/httpClient.js'
+import {HTTP_client} from '../../services/httpClient.js'
 
 let http = new HTTP_client()
 

@@ -7,6 +7,7 @@ export class HTTP_client {
         this.routes_API = 'https://www.kringeproduction.ru/routes/'
         this.comments_API = 'https://www.kringeproduction.ru/comments/'
         this.users_API = 'https://www.kringeproduction.ru/users/'
+        this.createUser_API = 'https://www.kringeproduction.ru/create_user/'
     }
 
     setHeaders(current_headers) {
@@ -92,7 +93,7 @@ export class HTTP_client {
             throw new Error(e.message)
         }
 
-        return this.http.get(`${this.users_API}?name=${name}`, headers)
+        return this.http.get(`${this.users_API}`, headers)
     }
 
     async createUser(name, password, email) {
@@ -112,8 +113,6 @@ export class HTTP_client {
             "email": email
         }
 
-        console.log(data)
-
-        return this.http.post(this.users_API, JSON.stringify(data), headers)
+        return this.http.post(this.createUser_API, JSON.stringify(data), headers)
     }
 }

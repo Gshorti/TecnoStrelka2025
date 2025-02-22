@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../static/sass/style.css">
     <link rel="stylesheet" href="../static/sass/popupStyles.css">
     <link rel="stylesheet" href="account.css">
-    <script type="module" src="accountHTTP.js"></script>
+<!--    <script type="module" src="accountHTTP.js"></script>-->
 </head>
 <body>
     <header>
@@ -16,43 +16,10 @@
         <a href="../account/account.html"><button class="user-button"><img src="../static/img/User.svg" class="header-img"></button></a>
     </header>
     <main>
-        <div class="container">
-            <div class="form">
-                <div class="registration" id="registration">
-                    <h3>Зарегистрироваться</h3>
-                    <span class="name-of-user-container">
-                        <h4>Имя</h4>
-                        <input id="name-register-input" class="name-of-user-input" maxlength="30">
-                    </span>
-                    <span class="password-of-user-container">
-                        <h4>Пароль</h4>
-                        <input id="password-register-input" class="password-of-user-input" maxlength="16">
-                    </span>
-                    <span class="email-of-user-container" id="email-of-user-container">
-                        <h4>E-mail</h4>
-                        <input id="email-register-input" class="email-of-user-input">
-                    </span>
-                    <button id="registration-button">Зарегистрироваться</button>
-                    <p onclick="openSignIn()">Есть аккаунт? <b>Войти</b></p>
-                </div>
-                <div class="sign-in" style="display: none;" id="sign-in">
-                    <h3>Войти</h3>
-                    <span class="name-of-user-container">
-                        <h4>Имя</h4>
-                        <input id="name-email-input" class="name-of-user-input">
-                    </span>
-                    <span class="password-of-user-container">
-                        <h4>Пароль</h4>
-                        <input id="password-email-input" class="password-of-user-input">
-                    </span>
-                    <button id="sign-in-button">Войти</button>
-                    <p onclick="openRegistration()">Нет аккаунта? <b>Зарегистрироваться</b></p>
-                </div>
-            </div>
-        </div>
+
     </main>
     <footer></footer>
 
-<script src="changeSignInOrRegistration.js"></script>
+
 </body>
 </html>

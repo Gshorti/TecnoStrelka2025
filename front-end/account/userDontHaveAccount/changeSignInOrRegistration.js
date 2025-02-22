@@ -9,7 +9,7 @@ function openRegistration() {
     setTimeout(() => {
         registration.style.display = 'flex'
         signIn.style.display = 'none'
-    }, 300)
+    }, 200)
 }
 
 function openSignIn() {
@@ -19,5 +19,5 @@ function openSignIn() {
     setTimeout(() => {
         registration.style.display = 'none'
         signIn.style.display = 'flex'
-    }, 300)
+    }, 200)
 }
