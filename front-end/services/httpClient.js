@@ -5,6 +5,7 @@ export class HTTP_client {
         this.http = new HTTP_request();
         this.images_API = 'https://www.kringeproduction.ru/images/'
         this.routes_API = 'https://www.kringeproduction.ru/routes/'
+        this.comments_API = 'https://www.kringeproduction.ru/comments/'
     }
 
     async postImage(file) {
@@ -18,19 +19,34 @@ export class HTTP_client {
         return response;
     }
 
+    async getImages() {
+        const response = await this.http.get(this.images_API, {
+            'Accept': 'application/json'
+        })
+
+        return response
+    }
+
+    async getComments() {
+        const response = await this.http.get(this.comments_API, {
+            'Accept': 'application/json'
+        })
+
+        return response
+    }
 
     async getData() {
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         }
-        return await this.http.get(this.images_API, headers)
+        return await this.http.get(this.routes_API, headers)
     }
 
-    async postData(data) {
+    async postRoutes(data) {
         let headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/json'
         }
         return await this.http.post(this.routes_API, data, headers)
     }
