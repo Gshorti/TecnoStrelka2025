@@ -95,8 +95,11 @@ export class HTTP_client {
         return this.http.get(`${this.users_API}?name=${name}`, headers)
     }
 
-    async createUser(name, email, password) {
-        let headers = {'Accept': 'application/json'}
+    async createUser(name, password, email) {
+        let headers = {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        }
         try {
             headers = this.setHeaders(headers)
         } catch (e) {
@@ -104,12 +107,12 @@ export class HTTP_client {
         }
 
         let data = {
-            "username": name,
+            "name": name,
             "password": password,
             "email": email
         }
 
-        console.log(headers)
+        console.log(data)
 
         return this.http.post(this.users_API, JSON.stringify(data), headers)
     }
