@@ -24,7 +24,7 @@ function newTemplateComment(name, text, likes) {
     document.getElementById('rating-of-route-container').appendChild(clone)
 }
 
-function loadImage(data, imageId, imagesArray) {
+function loadImage(data, imageId, imagesArray) {     /// USING IT
     for (let i = 0; i < data.length; i++) {
         if (data[i].id === imageId && imagesArray.indexOf(imageId) !== 0) {
             data[i].image = String(data[i].image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
@@ -45,8 +45,7 @@ function loadComment(data, commentId) {
     }
 }
 
-function postOnDocumentSetter(object) {
-    console.log(object)
+function postOnDocumentSetter(object) {             /// USING IT
     object.forEach((id) => {
         let images = http.getImages()
         images.then(data => {
@@ -68,16 +67,8 @@ window.onload = function () {
     // TODO
     //  Захар обязан сделать отправку с главной страницы
 
-    localStorage.setItem('selectedPost', JSON.stringify(object))
-    let object = {
-        "id": 1,
-        "name": "fdfdf",
-        "data": {},
-        "comments": [1, 2, 3, 4],
-        "images": [1, 8, 3, 2]
-    }
     let selectedPost = localStorage.getItem('selectedPost')
-    console.log(object)
+
     if (selectedPost) {
         let parsedPost = JSON.parse(selectedPost)
         postOnDocumentSetter(parsedPost.images)

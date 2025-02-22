@@ -28,6 +28,7 @@ header {
 
 main {
   width: 100vw;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,10 +53,29 @@ main {
 
 .main-div {
   display: grid;
-  grid-template-columns: repeat(2, minmax(200px, auto));
-  width: 80vw;
+  grid-template-columns: repeat(3, auto);
+  grid-gap: 20px;
+  width: 90%;
   background-color: #92A6AC;
-  height: 90vh;
+  min-height: 90vh;
+}
+.main-div .post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  height: 350px;
+  background: #9a9a9a;
+}
+.main-div .post .image-of-post-container img {
+  width: 250px;
+  height: 250px;
+}
+.main-div .post .name-of-post-container .name-of-post {
+  width: 300px;
+  line-break: anywhere;
 }
 
 button {
