@@ -28,7 +28,11 @@
                 <span class="route">
                     <button onclick="openPopup()" class="import">Импорт</button>
                 </span>
-                <span class="images-of-route" id="images-or-route"></span>
+<!--                Images container (comment for visibility) -->
+                <span class="images-of-route"
+                      id="images-or-route"
+                      onwheel="wheelOnBar(event)">
+                </span>
                 <span class="description route-description">
                     <label for="route-description-textarea">Опишите маршрут:</label>
                     <textarea id="route-description-textarea" required></textarea>
@@ -100,6 +104,7 @@
 
 </body>
 
-<script src="importRoute.js"></script>
+<script src="Popups.js"></script>
 <script src="imageAddScript.js"></script>
+<script src="scroll.js"></script>
 </html>
