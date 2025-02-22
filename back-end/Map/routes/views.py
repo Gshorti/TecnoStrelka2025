@@ -14,3 +14,4 @@ class RoutesView(ModelViewSet):
 class ImageView(ModelViewSet):
     queryset = Image.objects.all()
     serializer_class = IS
+    authentication_classes = []

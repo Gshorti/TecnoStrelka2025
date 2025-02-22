@@ -5,52 +5,53 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/sass/style.css">
+    <link rel="stylesheet" href="../static/sass/popupStyles.css">
     <link rel="stylesheet" href="createPost.css">
-    <script type="module" src="request.js"></script>
+    <script type="module" src="createPost.js"></script>
 </head>
 <body>
-<header>
-    <a href="../index.html"><button class="home-button"><img src="../static/img/Home.svg" class="header-img"></button></a>
-    <a href="../createPost_page/createPost.html"><button class="../plus-button"><img src="../static/img/plus.svg" class="header-img"></button></a>
-    <a href="#"><button class="user-button"><img src="../static/img/User.svg" class="header-img"></button></a>
-</header>
-<main>
-    <div class="container">
-            <span class="hello-part">
-                <h1>Создайте свой маршрут</h1>
-            </span>
-        <div class="create-route" id="route-form">
-                <span class="route-name">
-                    <label for="route-name-input">Назовите маршрут:</label>
-                    <input id="route-name-input">
+    <header>
+        <a href="../index.html"><button class="home-button"><img src="../static/img/Home.svg" class="header-img"></button></a>
+        <a href="../createPost_page/createPost.html"><button class="plus-button"><img src="../static/img/plus.svg" class="header-img"></button></a>
+        <a href="../account/account.html"><button class="user-button"><img src="../static/img/User.svg" class="header-img"></button></a>
+    </header>
+    <main>
+        <div class="container">
+                <span class="hello-part">
+                    <h1>Создайте свой маршрут</h1>
                 </span>
-            <span class="route">
-                <button onclick="openPopup()" class="import">Импорт</button>
-            </span>
-            <span class="images-of-route" id="images-or-route"></span>
-            <span class="description route-description">
-                <label for="route-description-textarea">Опишите маршрут:</label>
-                <textarea id="route-description-textarea" required></textarea>
-            </span>
-            <span class="route-availability">
-                <label for="route-availability-input">Выберите доступность:</label>
-                <select id="route-availability-input">
-                    <option>
-                        <img src="../static/img/BlockHaveMoreData.svg">
-                        <p>Общедоступный</p>
-                    </option>
-                    <option>
-                        <img src="../static/img/BlockHaveMoreData.svg">
-                        <p>Приватный</p>
-                    </option>
-                </select>
-            </span>
-            <button class="create-route-button" id="create-route-button">создать</button>
-            <p class="route-moderation">все маршруты перед публикацией проверяются модерацией</p>
+            <div class="create-route" id="route-form">
+                    <span class="route-name">
+                        <label for="route-name-input">Назовите маршрут:</label>
+                        <input id="route-name-input">
+                    </span>
+                <span class="route">
+                    <button onclick="openPopup()" class="import">Импорт</button>
+                </span>
+                <span class="images-of-route" id="images-or-route"></span>
+                <span class="description route-description">
+                    <label for="route-description-textarea">Опишите маршрут:</label>
+                    <textarea id="route-description-textarea" required></textarea>
+                </span>
+                <span class="route-availability">
+                    <label for="route-availability-input">Выберите доступность:</label>
+                    <select id="route-availability-input">
+                        <option>
+                            <img src="../static/img/BlockHaveMoreData.svg">
+                            <p>Общедоступный</p>
+                        </option>
+                        <option>
+                            <img src="../static/img/BlockHaveMoreData.svg">
+                            <p>Приватный</p>
+                        </option>
+                    </select>
+                </span>
+                <button class="create-route-button" id="create-route-button">создать</button>
+                <p class="route-moderation">все маршруты перед публикацией проверяются модерацией</p>
+            </div>
         </div>
-    </div>
-</main>
-<footer></footer>
+    </main>
+    <footer></footer>
 
 <div class="popup popup-import-route" id="popup-import-route" style="display: none;">
     <span onclick="closePopUp()" class="hide-popup">

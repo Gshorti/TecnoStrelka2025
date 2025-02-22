@@ -6,21 +6,46 @@ export class HTTP_client {
         this.images_API = 'https://www.kringeproduction.ru/images/'
         this.routes_API = 'https://www.kringeproduction.ru/routes/'
         this.comments_API = 'https://www.kringeproduction.ru/comments/'
+        this.users_API = 'https://www.kringeproduction.ru/users/'
+        this.createUser_API = 'https://www.kringeproduction.ru/create_user/'
+    }
+
+    setHeaders(current_headers) {
+        const LS_username = localStorage.getItem('username')
+        const LS_password = localStorage.getItem('password')
+
+        if (LS_username === null || LS_password === null) {
+            throw new Error('No username or password')
+        }
+
+        current_headers["X-USERNAME"] = String(LS_username)
+        current_headers["X-PASSWORD"] = String(LS_password)
+
+        return current_headers
     }
 
     async postImage(file) {
         let formData = new FormData();
         formData.append("image", file);
 
-        const response = await this.http.post(this.images_API, formData, {
+        const response = this.http.post(this.images_API, formData, {
             'Accept': 'application/json'
         });
 
-        return response;
+        return await response
+    }
+
+    async postImages(filesArray) {
+        let outputData = []
+        for (let i = 0; i < filesArray.length; i++) {
+            let file = filesArray[i]
+            outputData.push(this.postImage(file))
+        }
+        return await outputData
     }
 
     async getImages() {
-        const response = await this.http.get(this.images_API, {
+        const response = this.http.get(this.images_API, {
             'Accept': 'application/json'
         })
 
@@ -28,7 +53,7 @@ export class HTTP_client {
     }
 
     async getComments() {
-        const response = await this.http.get(this.comments_API, {
+        const response = this.http.get(this.comments_API, {
             'Accept': 'application/json'
         })
 
@@ -38,24 +63,56 @@ export class HTTP_client {
     async getData() {
         let headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
         }
-        return await this.http.get(this.routes_API, headers)
+        return this.http.get(this.routes_API, headers)
     }
 
-    async postRoutes(data) {
+    async postNewRoute(routeData) {
+
         let headers = {
             'Accept': 'application/json',
-            // 'Content-Type': 'application/json'
-        }
-        return await this.http.post(this.routes_API, data, headers)
+            'Content-Type': 'application/json'
+        } //Когда body строится при помощи formdata хедеры не нужны, а когда при помощи JSON.stringfy(объект) то нужны.
+
+        return this.http.post(this.routes_API, routeData, headers)
     }
 
     async getRoutes() {
-        const response = await this.http.get(this.routes_API, {
+        const response = this.http.get(this.routes_API, {
             "Accept": "application/json",
         })
 
-        return response;
+        return response
+    }
+
+    async getUser(name) {
+        let headers = {'Accept': 'application/json'}
+        try {
+            headers = this.setHeaders(headers)
+        } catch (e) {
+            throw new Error(e.message)
+        }
+
+        return this.http.get(`${this.users_API}?name=${name}`, headers)
+    }
+
+    async createUser(name, password, email) {
+        let headers = {
+            'Accept': 'application/json',
+            'content-type': 'application/json',
+        }
+        try {
+            headers = this.setHeaders(headers)
+        } catch (e) {
+            throw new Error(e.message)
+        }
+
+        let data = {
+            "name": name,
+            "password": password,
+            "email": email
+        }
+
+        return this.http.post(this.createUser_API, JSON.stringify(data), headers)
     }
 }

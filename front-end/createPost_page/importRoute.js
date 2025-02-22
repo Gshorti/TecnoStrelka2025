@@ -1,11 +1,11 @@
-let popup = document.getElementById('popup-import-route')
+let importPopup = document.getElementById('popup-import-route')
 let errorPopup = document.getElementById('error-popup')
 
 function openPopup() {
-    popup.style.display = 'flex'
+    importPopup.style.display = 'flex'
 }
 function closePopUp() {
-    popup.style.display = 'none'
+    importPopup.style.display = 'none'
 }
 
 function wheelOnBar(event) {

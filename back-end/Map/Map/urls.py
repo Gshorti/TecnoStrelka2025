@@ -21,7 +21,7 @@ from rest_framework.routers import DefaultRouter
 from comments.views import ComView
 from objects.views import ObjView
 from routes.views import RoutesView, ImageView
-from users.views import UserView
+from users.views import UserView, CreateUser
 router = DefaultRouter()
 
 router.register('users', UserView)
@@ -32,6 +32,7 @@ router.register('images', ImageView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('create_user/', CreateUser.as_view()),
     # path('images/', ImageView.as_view()),
 
 ]
