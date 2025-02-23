@@ -41,7 +41,7 @@ export class HTTP_client {
             let file = filesArray[i]
             outputData.push(this.postImage(file))
         }
-        return await outputData
+        return outputData
     }
 
     async getImages() {
@@ -72,7 +72,7 @@ export class HTTP_client {
         let headers = {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-        } //Когда body строится при помощи formdata хедеры не нужны, а когда при помощи JSON.stringfy(объект) то нужны.
+        }
 
         return this.http.post(this.routes_API, routeData, headers)
     }
@@ -85,7 +85,7 @@ export class HTTP_client {
         return response
     }
 
-    async getUser(name) {
+    async getUsers() {
         let headers = {'Accept': 'application/json'}
         try {
             headers = this.setHeaders(headers)
@@ -93,13 +93,14 @@ export class HTTP_client {
             throw new Error(e.message)
         }
 
-        return this.http.get(`${this.users_API}?name=${name}`, headers)
+        let request = this.http.get(`${this.users_API}`, headers)
+        return await request
     }
 
     async createUser(name, password, email) {
         let headers = {
-            'Accept': 'application/json',
-            'content-type': 'application/json',
+            "Accept": 'application/json',
+            "content-type": 'application/json',
         }
         try {
             headers = this.setHeaders(headers)
