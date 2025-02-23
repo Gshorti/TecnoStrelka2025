@@ -10,9 +10,9 @@ class Image(models.Model):
 class Routes(models.Model):
 
     choices = {
-        "bad":"bad",
-        "good":"good",
-        "unconfirmed":"unconfirmed"
+        "b":"bad",
+        "g":"good",
+        "u":"unconfirmed"
     }
 
     name = models.CharField(max_length=1000, null=True)
