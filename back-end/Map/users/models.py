@@ -9,6 +9,8 @@ class User(models.Model):
     routes = models.ForeignKey('routes.Routes', on_delete=models.CASCADE,
                                null=True, blank=True, related_name='author')
 
+    visited = models.JSONField(default=list)
+
     def __str__(self):
         return self.name
 

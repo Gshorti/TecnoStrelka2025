@@ -1,3 +1,5 @@
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from rest_framework.permissions import  IsAuthenticatedOrReadOnly
 from rest_framework.viewsets import ModelViewSet
 
@@ -11,3 +13,5 @@ class ComView(ModelViewSet):
     serializer_class = CS
     authentication_classes = [KPtubeAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filterset_fields = ["id"]
