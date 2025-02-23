@@ -1,0 +1,89 @@
+.rating-container {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.rating-container .rating-interactive-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+.rating-container .rating-interactive-buttons .create-rating {
+  width: auto;
+  height: 75px;
+  padding: 20px;
+  border-radius: 40px;
+  border: none;
+  outline: none;
+  background: #254C59;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: white;
+  font-size: 14px;
+}
+.rating-container .rating-interactive-buttons .create-rating img {
+  width: 50px;
+  height: 50px;
+}
+.rating-container .other-rating-of-route {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.rating-container .other-rating-of-route .rating {
+  width: 95%;
+  padding: 20px;
+  background: #5C5C5C;
+}
+.rating-container .other-rating-of-route .rating .user-data-and-rating {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.rating-container .other-rating-of-route .rating .user-data-and-rating .user-data, .rating-container .other-rating-of-route .rating .user-data-and-rating .rating-stars {
+  width: 100%;
+}
+.rating-container .other-rating-of-route .rating .comment-to-rating {
+  line-break: anywhere;
+}
+
+.reaction-popup {
+  min-height: 400px;
+  height: auto;
+  color: white;
+  font-family: "Roboto Thin", sans-serif;
+  font-weight: 300;
+  gap: 20px;
+}
+.reaction-popup .stars-reaction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.reaction-popup .text-of-reaction-container {
+  width: 100%;
+  height: 20vh;
+}
+.reaction-popup .text-of-reaction-container textarea {
+  resize: none;
+  height: 90%;
+  width: 90%;
+  padding: 10px;
+  border-radius: 15px;
+}
+.reaction-popup .make-reaction {
+  width: 90%;
+  height: 40px;
+  border-radius: 90px;
+  background: #3d6d7c;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+/*# sourceMappingURL=reaction.css.map */

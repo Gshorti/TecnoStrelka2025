@@ -7,6 +7,11 @@
   width: 300px;
   height: 300px;
 }
+.container .main-info-container .main-photo-of-route img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
 .container .main-info-container .text-info {
   display: grid;
   grid-template-rows: 2fr 1fr 1fr;
@@ -99,6 +104,7 @@
 .container .images-of-route {
   display: flex;
   width: 90%;
+  min-height: 30vh;
   padding: 10px;
   max-height: 400px;
   background: #254C59;
@@ -158,56 +164,6 @@
 }
 .container .images-of-route .image .label-input-file .file-input::file-selector-button {
   display: none;
-}
-.container .rating-container {
-  width: 90%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.container .rating-container .rating-interactive-buttons {
-  display: flex;
-  gap: 20px;
-}
-.container .rating-container .rating-interactive-buttons .create-rating, .container .rating-container .rating-interactive-buttons .change-sort-order {
-  width: auto;
-  height: 75px;
-  padding: 20px;
-  border-radius: 40px;
-  border: none;
-  outline: none;
-  background: #254C59;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  color: white;
-  font-size: 14px;
-}
-.container .rating-container .rating-interactive-buttons .create-rating img, .container .rating-container .rating-interactive-buttons .change-sort-order img {
-  width: 50px;
-  height: 50px;
-}
-.container .rating-container .other-rating-of-route {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  gap: 40px;
-}
-.container .rating-container .other-rating-of-route .rating {
-  width: 100%;
-  padding: 20px;
-  background: #5C5C5C;
-}
-.container .rating-container .other-rating-of-route .rating .user-data-and-rating {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-.container .rating-container .other-rating-of-route .rating .user-data-and-rating .user-data, .container .rating-container .other-rating-of-route .rating .user-data-and-rating .rating-stars {
-  width: 100%;
-}
-.container .rating-container .other-rating-of-route .rating .comment-to-rating {
-  line-break: anywhere;
 }
 
 /*# sourceMappingURL=selfPost.css.map */

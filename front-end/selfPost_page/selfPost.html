@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../static/sass/style.css">
     <link rel="stylesheet" href="../static/sass/popupStyles.css">
     <link rel="stylesheet" href="selfPost.css">
+    <link rel="stylesheet" href="reaction.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
@@ -78,17 +79,11 @@
         </div>
 
         <div class="rating-container">
-            <h1>Комментарии</h1>
             <div class="rating-interactive-buttons">
-                <button class="create-rating">
+                <h1>Оценки: </h1>
+                <button class="create-rating" onclick="openPopup()">
                     <img width="25" height="25" src="../static/img/star.svg">
                     <h2>Оценить</h2>
-                    <!--                    TODO-->
-                    <!--                     Систему оценок!!!!-->
-                </button>
-                <button class="change-sort-order">
-                    <img width="25" height="25" src="../static/img/GoodCommentsFirst.svg">
-                    <h2>Сначала положительные</h2>
                 </button>
             </div>
 
@@ -126,27 +121,28 @@
 </template>
 
 <div class="popup reaction-popup" id="reaction-popup">
-    <span onclick="closeErrorPopUp()" class="hide-popup">
+    <span onclick="closePopUp()" class="hide-popup">
         <img src="../static/img/escape.svg">
     </span>
     <span class="stars-reaction">
         <h3>Оцените маршрут</h3>
-        <span>
-            <img src="../static/img/unratedStar.svg">
-            <img src="../static/img/unratedStar.svg">
-            <img src="../static/img/unratedStar.svg">
-            <img src="../static/img/unratedStar.svg">
-            <img src="../static/img/unratedStar.svg">
+        <span id="interactive-stars-container">
+            <img src="../static/img/unratedStar.svg" onclick="getStarsOnPost(1)">
+            <img src="../static/img/unratedStar.svg" onclick="getStarsOnPost(2)">
+            <img src="../static/img/unratedStar.svg" onclick="getStarsOnPost(3)">
+            <img src="../static/img/unratedStar.svg" onclick="getStarsOnPost(4)">
+            <img src="../static/img/unratedStar.svg" onclick="getStarsOnPost(5)">
         </span>
     </span>
     <span class="text-of-reaction-container">
         <h3>Расскажите ещё:</h3>
-        <textarea class="text-of-reaction">
-
-        </textarea>
+        <textarea class="text-of-reaction"></textarea>
     </span>
+    <button class="make-reaction">Оценить</button>
 </div>
 
 <script src="../services/scroll.js"></script>
+<script src="../services/Popups.js"></script>
+<script src="reactionOnPost.js"></script>
 </body>
 </html>

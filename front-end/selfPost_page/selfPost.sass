@@ -9,6 +9,10 @@ $color-of-segments: #254C59
     .main-photo-of-route
       width: 300px
       height: 300px
+      img
+        width: 100%
+        height: 100%
+        border-radius: 15px
 
     .text-info
       display: grid
@@ -104,6 +108,7 @@ $color-of-segments: #254C59
   .images-of-route
     display: flex
     width: 90%
+    min-height: 30vh
     padding: 10px
     max-height: 400px
     background: $color-of-segments
@@ -163,52 +168,3 @@ $color-of-segments: #254C59
 
           &::file-selector-button
             display: none
-
-  .rating-container
-    width: 90%
-    display: flex
-    flex-direction: column
-    gap: 20px
-
-    .rating-interactive-buttons
-      display: flex
-      gap: 20px
-      .create-rating, .change-sort-order
-        width: auto
-        height: 75px
-        padding: 20px
-        border-radius: 40px
-        border: none
-        outline: none
-        background: $color-of-segments
-        display: flex
-        align-items: center
-        justify-content: center
-        gap: 20px
-        color: white
-        font-size: 14px
-        img
-          width: 50px
-          height: 50px
-
-    .other-rating-of-route
-      display: flex
-      flex-direction: column
-      width: 100%
-      gap: 40px
-
-      .rating
-        width: 100%
-        padding: 20px
-        background: #5C5C5C
-
-        .user-data-and-rating
-          display: grid
-          grid-template-columns: 1fr 1fr
-          .user-data, .rating-stars
-            width: 100%
-
-        .comment-to-rating
-          line-break: anywhere
-
-          -webkit-scrollbar
