@@ -9,11 +9,11 @@ class Image(models.Model):
 
 class Routes(models.Model):
 
-    choices = {
-        "b":"bad",
-        "g":"good",
-        "u":"unconfirmed"
-    }
+    choices = [
+        ("b","bad"),
+        ("g","good"),
+        ("u","unconfirmed")
+    ]
 
     name = models.CharField(max_length=1000, null=True)
     data = models.JSONField(null=True, blank=True, default=dict)
