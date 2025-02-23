@@ -3,11 +3,12 @@ import {HTTP_request} from './HTTP_request.js';
 export class HTTP_client {
     constructor() {
         this.http = new HTTP_request();
-        this.images_API = 'https://www.kringeproduction.ru/images/'
-        this.routes_API = 'https://www.kringeproduction.ru/routes/'
-        this.comments_API = 'https://www.kringeproduction.ru/comments/'
-        this.users_API = 'https://www.kringeproduction.ru/users/'
-        this.createUser_API = 'https://www.kringeproduction.ru/create_user/'
+        this.mainLink = 'https://www.kringeproduction.ru/'
+        this.images_API = `${this.mainLink}images/`
+        this.routes_API = `${this.mainLink}routes/`
+        this.comments_API = `${this.mainLink}comments/`
+        this.users_API = `${this.mainLink}users/`
+        this.createUser_API = `${this.mainLink}create_user/`
     }
 
     setHeaders(current_headers) {
