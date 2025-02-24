@@ -2,11 +2,29 @@ import {HTTP_client} from '../services/httpClient.js'
 
 let http = new HTTP_client()
 let postComments = []
+let routeId = 0
 
 
-function newComment(data) {
+document.querySelector('.make-reaction').addEventListener('click', () => {
 
-}
+    let username = String(localStorage.getItem('username'))
+    let likes = currentStarsValue
+    let text = document.querySelector('.text-of-reaction').value
+
+    let comment = {
+        'name': username,
+        'text': text,
+        'like': likes,
+        'route_ID': routeId
+    }
+
+    this.http.postComments(comment).then(data => {
+        console.log(data)
+        newTemplateComment(comment.name, comment.text, comment.like)
+    }).catch(err => {
+        console.log(err)
+    })
+})
 
 
 function newTemplateImage(link) {
@@ -65,14 +83,10 @@ function commentsOnDocumentSetter(object) {
 }
 
 window.onload = function () {
-    // TODO
-    //  Захар обязан сделать отправку с главной страницы
-
     let selectedPost = localStorage.getItem('selectedPost')
 
     let mainImage = localStorage.getItem('postMainImage')
     let postName = localStorage.getItem('postName')
-    let postDescription = localStorage.getItem('postDescription')
 
     document.getElementById('main-image').src = mainImage
     document.getElementById('route-name').innerText = postName
@@ -82,7 +96,6 @@ window.onload = function () {
         document.getElementById('route-description').innerText = String(parsedPost.description)
         postOnDocumentSetter(parsedPost.images)
         commentsOnDocumentSetter(parsedPost.comments)
+        routeId = parsedPost.id
     }
-
-    // TODO --end
 }

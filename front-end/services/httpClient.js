@@ -70,11 +70,12 @@ export class HTTP_client {
         return data.filter(image => ids.includes(image.id))
     }
 
-    async getData() {
+    async postComments(comment_data) {
         let headers = {
             'Accept': 'application/json',
+            'Content-Type': 'application/json'
         }
-        return this.http.get(this.routes_API, headers)
+        return await this.http.post(this.comments_API, JSON.stringify(comment_data), headers)
     }
 
     async postNewRoute(routeData) {
