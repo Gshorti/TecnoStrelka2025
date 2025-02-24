@@ -7,6 +7,7 @@ class Comment(models.Model):
     text = models.TextField(null=False, blank=False)
     like = models.IntegerField(default=0)
     answers = models.JSONField(default=list)
+    subcom = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
