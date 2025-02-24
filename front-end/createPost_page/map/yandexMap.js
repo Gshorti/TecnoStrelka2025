@@ -17,7 +17,11 @@ function init() {
 }
 
 function addMarker(coords) {
-    const marker = new ymaps.Placemark(coords, {}, {
+    const title = prompt("Введите название для метки:");
+
+    const marker = new ymaps.Placemark(coords, {
+        balloonContent: title
+    }, {
         preset: 'islands#icon',
         iconColor: '#0095b6'
     });
@@ -26,17 +30,13 @@ function addMarker(coords) {
     markers.push(coords);
 }
 
-// function drawRoute(coordsArray) {
-//     if (coordsArray.length < 2) {
-//         return;
-//     }
-//
-//     ymaps.route(coordsArray).then(function (route) {
-//         map.geoObjects.add(route);
-//         map.setBounds(route.getBounds(), {checkZoomRange: true});
-//     }, function (error) {
-//         alert('Ошибка построения маршрута: ' + error.message);
+
+// function addMarker(coords) {
+//     const marker = new ymaps.Placemark(coords, {}, {
+//         preset: 'islands#icon',
+//         iconColor: '#0095b6'
 //     });
-// }
-
-
+//
+//     map.geoObjects.add(marker);
+//     markers.push(coords);
+// } variant without names
