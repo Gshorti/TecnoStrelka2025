@@ -28,7 +28,7 @@ class CreateCommentView(APIView):
         serializer = CS(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            print(serializer.data)
             res = Response(serializer.data, status=status.HTTP_201_CREATED)
-            print(res)
             return res
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
