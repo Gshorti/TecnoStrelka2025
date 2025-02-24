@@ -2,4 +2,4 @@ Django
 djangorestframework
 psycopg2-binary
 tzdata
-django-filters
+django-filter

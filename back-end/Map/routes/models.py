@@ -8,6 +8,13 @@ class Image(models.Model):
     image = models.FileField(upload_to="images")
 
 class Routes(models.Model):
+
+    choices = [
+        ("b","bad"),
+        ("g","good"),
+        ("u","unconfirmed")
+    ]
+
     name = models.CharField(max_length=1000, null=True)
     data = models.JSONField(null=True, blank=True, default=dict)
     comments = models.ManyToManyField(Comment, null=True, blank=True)
@@ -15,6 +22,7 @@ class Routes(models.Model):
     history = models.JSONField(default=list, null=True)
     description = models.TextField(null=False, default="YTNE")
     private = models.BinaryField(default=False)
+    review = models.CharField(max_length=20, choices=choices, default="unconfirmed")
 
     def __str__(self):
         return self.name
