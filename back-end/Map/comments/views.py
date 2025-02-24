@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from Map.auth import KPtubeAuthentication
 from .models import Comment
 from .serializers import CS
+from routes.models import Routes as r
 
 
 class ComView(ModelViewSet):
@@ -30,6 +31,7 @@ class CreateCommentView(APIView):
             serializer.save()
             res = serializer.data
             res = res.id
-
+            aaa = r.objects.get(id=request.data["route_ID"])
+            aaa.comments.append(res)
             return Response({"result":"Я респонз, сообщающий вам весть об успешной обработке реквеста"}, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
