@@ -30,8 +30,9 @@ class CreateCommentView(APIView):
         if serializer.is_valid():
             serializer.save()
             res = serializer.data
-            res = res.id
-            aaa = r.objects.get(id=request.data["route_ID"])
-            aaa.comments.append(res)
-            return Response({"result":"Я респонз, сообщающий вам весть об успешной обработке реквеста"}, status=status.HTTP_201_CREATED)
+            # res = res.id
+            # aaa = r.objects.get(id=request.data["route_ID"])
+            # aaa.comments.append(res)
+            # return Response({"result":"Я респонз, сообщающий вам весть об успешной обработке реквеста"}, status=status.HTTP_201_CREATED)
+            return Response(res, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
