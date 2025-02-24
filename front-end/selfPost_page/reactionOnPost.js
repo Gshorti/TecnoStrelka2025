@@ -16,4 +16,4 @@ function getStarsOnPost(numberOfStars) {
             allStars[j].src = unratedStarPath
         }
     }
-}
+} ///Хз лол чё это 
