@@ -2,6 +2,8 @@ ymaps.ready(init)
 let map
 let markers = []
 let userCoords = []
+let isCreatingNewPoint = false
+let pageCoords = []
 
 function init() {
     map = new ymaps.Map("map", {
@@ -11,7 +13,9 @@ function init() {
     })
 
     map.events.add('click', function (e) {
+        console.log(e)
         const coords = e.get('coords')
+        isCreatingNewPoint = true
         addMarker(coords)
     })
 
@@ -35,23 +39,26 @@ function init() {
 }
 
 function addMarker(coords) {
-    const title = prompt("Введите название для метки:")
+    console.log(pageCoords)
+    isCreatingNewPoint = false
+    let title = showNewPointOnRoute(pageCoords)
 
-    const marker = new ymaps.Placemark(coords, {
-        balloonContent: title
-    }, {
-        preset: 'islands#icon',
-        iconColor: '#0095b6'
-    })
+    if (title !== null) {
+        const marker = new ymaps.Placemark(coords, {
+            balloonContent: title
+        }, {
+            preset: 'islands#icon',
+            iconColor: '#0095b6'
+        })
 
-    marker.events.add('click', function () {
-        if (confirm("Вы хотите удалить эту метку?")) {
-            map.geoObjects.remove(marker)
-            // Также можно удалить координаты из массива markers, если это необходимо
-            markers = markers.filter(markerCoords => markerCoords !== coords)
-        }
-    })
+        map.geoObjects.add(marker)
+        markers.push(coords)
 
-    map.geoObjects.add(marker)
-    markers.push(coords)
+        marker.events.add('click', function () {
+            if (managePoint(pageCoords)) {
+                map.geoObjects.remove(marker)
+                markers = markers.filter(markerCoords => markerCoords !== coords)
+            }
+        })
+    }
 }
