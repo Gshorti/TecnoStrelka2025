@@ -1,6 +1,31 @@
 import {HTTP_client} from '../services/httpClient.js'
 
 let http = new HTTP_client()
+let postComments = []
+let routeId = 0
+
+
+document.querySelector('.make-reaction').addEventListener('click', () => {
+
+    let username = String(localStorage.getItem('username'))
+    let likes = currentStarsValue
+    let text = document.querySelector('.text-of-reaction').value
+
+    let comment = {
+        'name': username,
+        'text': text,
+        'like': likes,
+        'route_ID': routeId
+    }
+
+    this.http.postComments(comment).then(data => {
+        console.log(data)
+        newTemplateComment(comment.name, comment.text, comment.like)
+    }).catch(err => {
+        console.log(err)
+    })
+})
+
 
 function newTemplateImage(link) {
     const template = document.getElementById('image-template')
@@ -24,62 +49,53 @@ function newTemplateComment(name, text, likes) {
     document.getElementById('rating-of-route-container').appendChild(clone)
 }
 
-function loadImage(data, imageId) {     /// USING IT
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id === imageId) {
-            data[i].image = String(data[i].image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
-            newTemplateImage(data[i].image)
-        }
-    }
+function loadImage(data) {     /// USING IT
+    data.image = String(data.image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
+    newTemplateImage(data.image)
 }
 
-function loadComment(data, commentId) {
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].id === commentId) {
-            newTemplateComment(data[i].name, data[i].text, data[i].like)
-        }
-    }
+function loadComment(data) {
+    newTemplateComment(data.name, data.text, data.like)
+    postComments.push({
+        'name': data.name,
+        'text': data.text,
+        'like': data.like
+    })
 }
 
-function postOnDocumentSetter(object) {             /// USING IT
-    object.forEach((id) => {
-        let images = http.getImages()
-        images.then(data => {
-            loadImage(data, id)
+function postOnDocumentSetter(object) {
+    let images = http.getImages(object)
+    images.then(data => {
+        data.forEach((item) => {
+            loadImage(item)
         })
     })
 }
 
 function commentsOnDocumentSetter(object) {
-    object.forEach((id) => {
-        let comment = http.getComments()
-        comment.then(data => {
-            loadComment(data, id)
+    let comments = http.getComments(object)
+    comments.then(data => {
+        data.forEach(item => {
+            console.log(item)
+            loadComment(item)
         })
     })
 }
 
 window.onload = function () {
-    // TODO
-    //  Захар обязан сделать отправку с главной страницы
-
     let selectedPost = localStorage.getItem('selectedPost')
 
     let mainImage = localStorage.getItem('postMainImage')
     let postName = localStorage.getItem('postName')
-    let postDescription = localStorage.getItem('postDescription')
 
     document.getElementById('main-image').src = mainImage
     document.getElementById('route-name').innerText = postName
 
     if (selectedPost) {
         let parsedPost = JSON.parse(selectedPost)
-        console.log(parsedPost.description)
         document.getElementById('route-description').innerText = String(parsedPost.description)
-        console.log(parsedPost)
         postOnDocumentSetter(parsedPost.images)
         commentsOnDocumentSetter(parsedPost.comments)
+        routeId = parsedPost.id
     }
-
-    // TODO --end
 }

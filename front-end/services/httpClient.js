@@ -44,27 +44,38 @@ export class HTTP_client {
         return outputData
     }
 
-    async getImages() {
-        const response = this.http.get(this.images_API, {
+    async getImages(ids) {
+        let data = []
+        const response = await this.http.get(this.images_API, {
             'Accept': 'application/json'
-        })
+        }).then(
+            (rel) => {
+                data = rel
+            }
+        )
 
-        return response
+        return data.filter(image => ids.includes(image.id))
     }
 
-    async getComments() {
-        const response = this.http.get(this.comments_API, {
+    async getComments(ids) {
+        let data = []
+        const response = await this.http.get(this.comments_API, {
             'Accept': 'application/json'
-        })
+        }).then(
+            (rel) => {
+                data = rel
+            }
+        )
 
-        return response
+        return data.filter(image => ids.includes(image.id))
     }
 
-    async getData() {
+    async postComments(comment_data) {
         let headers = {
             'Accept': 'application/json',
+            'Content-Type': 'application/json'
         }
-        return this.http.get(this.routes_API, headers)
+        return await this.http.post(this.comments_API, JSON.stringify(comment_data), headers)
     }
 
     async postNewRoute(routeData) {

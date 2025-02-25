@@ -1,11 +1,11 @@
-let importPopup = document.getElementById('popup-import-route')
+let popup = document.querySelector('.popup')
 let errorPopup = document.getElementById('error-popup')
 
 function openPopup() {
-    importPopup.style.display = 'flex'
+    popup.style.display = 'flex'
 }
 function closePopUp() {
-    importPopup.style.display = 'none'
+    popup.style.display = 'none'
 }
 
 function showErrorPopup() {
