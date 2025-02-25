@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../static/sass/style.css">
     <link rel="stylesheet" href="../static/sass/popupStyles.css">
     <link rel="stylesheet" href="createPost.css">
+    <link rel="stylesheet" href="route-menu.css">
     <script type="module" src="createPost.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_UA&apikey=262210b3-3ea4-4122-8b7d-9f66b570b11c" type="text/javascript"></script>
 </head>
@@ -34,7 +35,6 @@
                 <span class="import-route">
                     <button onclick="openPopup()" class="import">Импорт</button>
                 </span>
-<!--                Images container (comment for visibility) -->
                 <span class="images-of-route"
                       id="images-or-route"
                       onwheel="wheelOnBar(event)">
@@ -97,6 +97,35 @@
     <h1>Проверьте поля или попробуйте снова</h1>
 </div>
 
+<div class="route-menu new-point-on-route">
+    <h1>Создание метки</h1>
+    <span class="point-name">
+        <h3>Название:</h3>
+        <input id="name-of-point" placeholder="пусто, если без названия">
+    </span>
+    <span class="point-controls">
+        <button class="create" id="create-button">
+            Создать
+        </button>
+        <button class="dismiss" id="dismiss-button">
+            Отмена
+        </button>
+    </span>
+</div>
+
+<div class="route-menu created-point-on-route">
+    <h1>Название метки</h1>
+    <h3>Удалить метку?</h3>
+    <span class="point-controls">
+        <button class="delete" id="delete-button">
+            Удалить
+        </button>
+        <button class="dismiss">
+            Отмена
+        </button>
+    </span>
+</div>
+
 <template id="new-image-template">
     <span class="image">
         <label class="label-input-file">
@@ -110,7 +139,9 @@
 
 </body>
 
-<script src="Popups.js"></script>
+
+<script src="../services/Popups.js"></script>
 <script src="imageAddScript.js"></script>
-<script src="scroll.js"></script>
+<script src="../services/scroll.js"></script>
+<script src="map/interface.js"></script>
 </html>

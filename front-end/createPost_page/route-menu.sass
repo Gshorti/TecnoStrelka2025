@@ -1,0 +1,51 @@
+$color-of-segments: #254C59
+
+.route-menu
+  position: absolute
+  padding: 20px
+  border-radius: 0 15px 15px 15px
+  background: $color-of-segments
+  width: 300px
+  height: auto
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  justify-content: left
+  color: white
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34)
+  opacity: 0
+  z-index: -1
+
+
+.new-point-on-route
+  .point-name
+    width: 100%
+    display: flex
+    justify-content: space-between
+    gap: 20px
+
+    input
+      padding: 5px
+      border-radius: 5px
+      border: none
+      outline: none
+
+  .point-controls
+    width: 100%
+    display: flex
+    justify-content: space-between
+
+    button
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 10px
+      border-radius: 5px
+      border: none
+      outline: none
+
+    .create
+      background: #D6F6FF
+
+
+.created-point-on-route
