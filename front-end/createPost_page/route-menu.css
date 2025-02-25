@@ -1,0 +1,40 @@
+.route-menu {
+  padding: 20px;
+  border-radius: 0 15px 15px 15px;
+  background: #254C59;
+  width: 300px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+  color: white;
+}
+
+.new-point-on-route .point-name {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.new-point-on-route .point-name input {
+  padding: 5px;
+  border-radius: 5px;
+}
+.new-point-on-route .point-controls {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+.new-point-on-route .point-controls button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+}
+.new-point-on-route .point-controls .create {
+  background: #D6F6FF;
+}
+
+/*# sourceMappingURL=route-menu.css.map */
