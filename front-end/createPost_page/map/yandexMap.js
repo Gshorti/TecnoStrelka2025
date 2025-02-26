@@ -3,7 +3,7 @@ let map
 let markers = []
 let userCoords = []
 let isCreatingNewPoint = false
-let pageCoords = []
+let pageCords = []
 
 function init() {
     map = new ymaps.Map("map", {
@@ -13,10 +13,11 @@ function init() {
     })
 
     map.events.add('click', function (e) {
-        console.log(e)
+        const pageX = e.get('pagePixels')[0]
+        const pageY = e.get('pagePixels')[1]
         const coords = e.get('coords')
         isCreatingNewPoint = true
-        addMarker(coords)
+        addMarker(coords, [pageX, pageY])
     })
 
     ymaps.geolocation.get().then(function (res) {
@@ -38,27 +39,30 @@ function init() {
     })
 }
 
-function addMarker(coords) {
-    console.log(pageCoords)
+function addMarker(coords, pageCords) {
     isCreatingNewPoint = false
-    let title = showNewPointOnRoute(pageCoords)
+    let title = showNewPointOnRoute(pageCords) /// через промисы
 
-    if (title !== null) {
-        const marker = new ymaps.Placemark(coords, {
-            balloonContent: title
-        }, {
-            preset: 'islands#icon',
-            iconColor: '#0095b6'
-        })
+    const marker = new ymaps.Placemark(coords, {
+        balloonContent: title
+    }, {
+        preset: 'islands#icon',
+        iconColor: '#0095b6'
+    })
 
-        map.geoObjects.add(marker)
-        markers.push(coords)
+    map.geoObjects.add(marker)
+    markers.push(coords)
 
-        marker.events.add('click', function () {
-            if (managePoint(pageCoords)) {
-                map.geoObjects.remove(marker)
-                markers = markers.filter(markerCoords => markerCoords !== coords)
-            }
-        })
+    if (title === null) {
+        map.geoObjects.remove(marker)
     }
+
+    marker.events.add('click', function () {
+        let pointIsDel = managePoint(pageCords)
+        console.log(pointIsDel)     /// Сделать через промисы
+        if (pointIsDel) {
+            map.geoObjects.remove(marker)
+            markers = markers.filter(markerCoords => markerCoords !== coords)
+        }
+    })
 }
