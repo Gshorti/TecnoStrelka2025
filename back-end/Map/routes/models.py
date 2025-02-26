@@ -17,7 +17,7 @@ class Routes(models.Model):
 
     name = models.CharField(max_length=1000, null=True)
     data = models.JSONField(null=True, blank=True, default=dict)
-    comments = models.ManyToManyField(Comment, null=True, blank=True)
+    comments = models.JSONField(default=list, blank=True)
     images = models.ManyToManyField(Image, null=True)
     history = models.JSONField(default=list, null=True)
     description = models.TextField(null=False, default="YTNE")
