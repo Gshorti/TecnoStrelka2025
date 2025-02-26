@@ -24,7 +24,7 @@ services:
       context: ./front-end/
     volumes:
       - ./front-end:/usr/share/nginx/html/
-      - ./back-end/Map/images:/usr/share/nginx/html/files
+      - ./back-end/Map/images:/usr/share/nginx/html/
     ports:
      - "8060:80"
     environment:
