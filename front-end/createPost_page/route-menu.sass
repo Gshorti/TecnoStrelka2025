@@ -1,7 +1,6 @@
 $color-of-segments: #254C59
 
 .route-menu
-  position: absolute
   padding: 20px
   border-radius: 0 15px 15px 15px
   background: $color-of-segments
@@ -13,11 +12,15 @@ $color-of-segments: #254C59
   justify-content: left
   color: white
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.34)
-  opacity: 0
-  z-index: -1
+  z-index: 99999
 
+#new-point-on-route
+  display: none
+  position: absolute
+  top: -1000px
+  left: -1000px
+  z-index: 9999
 
-.new-point-on-route
   .point-name
     width: 100%
     display: flex
@@ -47,5 +50,9 @@ $color-of-segments: #254C59
     .create
       background: #D6F6FF
 
-
-.created-point-on-route
+#created-point-on-route
+  display: none
+  position: absolute
+  top: -1000px
+  left: -1000px
+  z-index: 9999

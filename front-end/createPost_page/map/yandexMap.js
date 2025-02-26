@@ -3,7 +3,7 @@ let map
 let markers = []
 let userCoords = []
 let isCreatingNewPoint = false
-let pageCoords = []
+let pageCords = []
 
 function init() {
     map = new ymaps.Map("map", {
@@ -12,11 +12,12 @@ function init() {
         controls: ['default', 'routeButtonControl'],
     })
 
-    map.events.add('click', function (e) {
-        console.log(e)
+    map.events.add('click', function(e) {
+        const pageX = e.get('pagePixels')[0]
+        const pageY = e.get('pagePixels')[1]
         const coords = e.get('coords')
         isCreatingNewPoint = true
-        addMarker(coords)
+        addMarker(coords, [pageX, pageY])
     })
 
     ymaps.geolocation.get().then(function (res) {
@@ -38,10 +39,9 @@ function init() {
     })
 }
 
-function addMarker(coords) {
-    console.log(pageCoords)
+function addMarker(coords, pageCords) {
     isCreatingNewPoint = false
-    let title = showNewPointOnRoute(pageCoords)
+    let title = showNewPointOnRoute(pageCords)
 
     if (title !== null) {
         const marker = new ymaps.Placemark(coords, {
@@ -55,7 +55,8 @@ function addMarker(coords) {
         markers.push(coords)
 
         marker.events.add('click', function () {
-            if (managePoint(pageCoords)) {
+            let pointIsDel = managePoint(pageCords)
+            if (pointIsDel) {
                 map.geoObjects.remove(marker)
                 markers = markers.filter(markerCoords => markerCoords !== coords)
             }

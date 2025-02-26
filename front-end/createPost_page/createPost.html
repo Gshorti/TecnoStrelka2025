@@ -30,7 +30,7 @@
                         <input id="route-name-input">
                     </span>
                 <span class="route">
-                    <div class="map" id="map" style="width: 100%; height: 100%"></div>
+                    <div class="map" id="map" style="width: 100%; height: 100%; z-index: 3"></div>
                 </span>
                 <span class="import-route">
                     <button onclick="openPopup()" class="import">Импорт</button>
@@ -97,7 +97,7 @@
     <h1>Проверьте поля или попробуйте снова</h1>
 </div>
 
-<div class="route-menu new-point-on-route">
+<div class="route-menu" id="new-point-on-route">
     <h1>Создание метки</h1>
     <span class="point-name">
         <h3>Название:</h3>
@@ -113,14 +113,14 @@
     </span>
 </div>
 
-<div class="route-menu created-point-on-route">
+<div class="route-menu" id="created-point-on-route">
     <h1>Название метки</h1>
     <h3>Удалить метку?</h3>
     <span class="point-controls">
         <button class="delete" id="delete-button">
             Удалить
         </button>
-        <button class="dismiss">
+        <button class="dismiss" id="dismiss-delete-button">
             Отмена
         </button>
     </span>
