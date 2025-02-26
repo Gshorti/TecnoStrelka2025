@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='routes',
             name='private',
-            field=models.BinaryField(default=False),
+            field=models.BooleanField(default=False),
         ),
     ]

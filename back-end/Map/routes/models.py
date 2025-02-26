@@ -21,7 +21,7 @@ class Routes(models.Model):
     images = models.ManyToManyField(Image, null=True)
     history = models.JSONField(default=list, null=True)
     description = models.TextField(null=False, default="YTNE")
-    private = models.BinaryField(default=False)
+    private = models.BooleanField(default=False)
     review = models.CharField(max_length=20, choices=choices, default="unconfirmed")
 
     def __str__(self):
