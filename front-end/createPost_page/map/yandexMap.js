@@ -5,6 +5,11 @@ let userCoords = []
 let isCreatingNewPoint = false
 let pageCords = []
 
+let geoJsonData = {
+    type: "FeatureCollection",
+    features: []
+};
+
 function init() {
     map = new ymaps.Map("map", {
         center: [0, 0],
@@ -17,6 +22,13 @@ function init() {
         const pageY = e.get('pagePixels')[1]
         const coords = e.get('coords')
         isCreatingNewPoint = true
+        geoJsonData.features.push({
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: coords,
+            },
+        });
         addMarker(coords, [pageX, pageY])
     })
 
@@ -37,6 +49,7 @@ function init() {
             zoom: 2
         })
     })
+
 }
 
 function addMarker(coords, pageCords) {
