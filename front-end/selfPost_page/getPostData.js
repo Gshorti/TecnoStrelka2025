@@ -3,11 +3,36 @@ import {HTTP_client} from '../services/httpClient.js'
 let http = new HTTP_client()
 let postComments = []
 let routeId = 0
+let currentComments = []
+let username = String(localStorage.getItem('username'))
+let isVisited = false
+
+var debounce = function (fn, t) {
+    let timer
+    return function (...args) {
+        clearTimeout(timer)
+        timer = setTimeout(function () {
+            fn.apply(this, args)
+        }, t)
+    }
+}
+
+
+function setIsVisited() {
+    http.getUser(username).then((user) => {
+        http.visitedRoutes(routeId, user[0].id, user[0].email, user[0].visited).then()
+    })
+}
+
+
+let deb = debounce(setIsVisited, 1500)
+
+document.getElementById('checkbox-if-visit').addEventListener('click', (e) => {
+    deb()
+})
 
 
 document.querySelector('.make-reaction').addEventListener('click', () => {
-
-    let username = String(localStorage.getItem('username'))
     let likes = currentStarsValue
     let text = document.querySelector('.text-of-reaction').value
 
@@ -18,11 +43,12 @@ document.querySelector('.make-reaction').addEventListener('click', () => {
         'route_ID': routeId
     }
 
-    this.http.postComments(comment).then(data => {
-        console.log(data)
-        newTemplateComment(comment.name, comment.text, comment.like)
+    closePopUp()
+    newTemplateComment(comment.name, comment.text, comment.like)
+    http.postComments(comment).then(data => {
+        http.updateRoute(data, routeId, currentComments).then((out) => {})
     }).catch(err => {
-        console.log(err)
+        console.error(err)
     })
 })
 
@@ -49,7 +75,7 @@ function newTemplateComment(name, text, likes) {
     document.getElementById('rating-of-route-container').appendChild(clone)
 }
 
-function loadImage(data) {     /// USING IT
+function loadImage(data) {
     data.image = String(data.image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
     newTemplateImage(data.image)
 }
@@ -76,7 +102,6 @@ function commentsOnDocumentSetter(object) {
     let comments = http.getComments(object)
     comments.then(data => {
         data.forEach(item => {
-            console.log(item)
             loadComment(item)
         })
     })
@@ -92,10 +117,20 @@ window.onload = function () {
     document.getElementById('route-name').innerText = postName
 
     if (selectedPost) {
-        let parsedPost = JSON.parse(selectedPost)
-        document.getElementById('route-description').innerText = String(parsedPost.description)
-        postOnDocumentSetter(parsedPost.images)
-        commentsOnDocumentSetter(parsedPost.comments)
-        routeId = parsedPost.id
+        http.getRoute(JSON.parse(selectedPost).id).then(data => {
+            document.getElementById('route-description').innerText = String(data.description)
+            postOnDocumentSetter(data.images)
+            commentsOnDocumentSetter(data.comments)
+            currentComments = data.comments
+            routeId = data.id
+
+            http.getUser(username).then((user) => {
+                if (user[0].visited.includes(routeId)) {
+                    let checkbox = document.getElementById('checkbox-if-visit')
+                    checkbox.checked = true
+                }
+            })
+        })
+
     }
 }

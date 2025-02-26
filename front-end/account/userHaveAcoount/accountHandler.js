@@ -5,10 +5,10 @@ function exitAccount() {
     window.location = '../userDontHaveAccount/form.html'
 }
 
-function changeUsername(){
+function usernameHandler(){
     let username = localStorage.getItem('username')
     let password = localStorage.getItem('password')
     usernameTeg.innerText = username
 }
 
-changeUsername()
+usernameHandler()

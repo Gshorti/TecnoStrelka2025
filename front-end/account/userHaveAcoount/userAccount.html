@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="userAccount.css">
     <link rel="stylesheet" href="../../static/sass/style.css">
+    <script type="module" src="accountPostHandler.js"></script>
 </head>
 <body>
 <header>
@@ -20,12 +21,25 @@
             <button onclick="exitAccount()">Выйти</button>
         </span>
         <span class="user-posts-container">
+            <div class="main-div" id="main-div">
 
+            </div>
         </span>
     </div>
 </main>
 <footer></footer>
 
+<template id="post-template">
+    <div class="post" onclick="setPostData(event)">
+    <span class="image-of-post-container">
+        <img id="mainImage" src="www.kringeproduction.ru/files/images/maga.jpg">
+    </span>
+        <span class="name-of-post-container">
+        <h2 class="name-of-post">Name of post Name of post</h2>
+    </span>
+        <h6 style="display: none" id="systemData"></h6>
+    </div>
+</template>
 <script src="accountHandler.js"></script>
 </body>
 </html>
