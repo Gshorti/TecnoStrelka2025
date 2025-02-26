@@ -1,8 +1,8 @@
-import {HTTP_request} from './HTTP_request.js'
+import {HTTP_request} from './HTTP_request.js';
 
 export class HTTP_client {
     constructor() {
-        this.http = new HTTP_request()
+        this.http = new HTTP_request();
         this.images_API = 'https://www.kringeproduction.ru/images/'
         this.routes_API = 'https://www.kringeproduction.ru/routes/'
         this.comments_API = 'https://www.kringeproduction.ru/comments/'
@@ -112,6 +112,16 @@ export class HTTP_client {
         }
 
         return this.http.post(this.routes_API, routeData, headers)
+    }
+
+
+
+    async getRoutes() {
+        const response = this.http.get(this.routes_API, {
+            "Accept": "application/json",
+        })
+
+        return response
     }
 
     async getUsers() {

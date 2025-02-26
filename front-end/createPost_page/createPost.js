@@ -9,7 +9,29 @@ document.getElementById('create-route-button').addEventListener('click', async (
     let isPrivate = false
 
 
-    // let routeData = document TODO
+    let routeData = document.getElementById('map').value
+
+    let geoJsonData = {
+        type: "FeatureCollection",
+        features: [
+            {
+                type: "Feature",
+                geometry: {
+                    type: "LineString", // Тип геометрии, например, LineString для маршрута
+                    coordinates: [
+                        [102.0, 0.5],
+                        [103.0, 0.5],
+                        [104.0, 0.5]
+                    ]
+                },
+                properties: {
+                    name: routeName,
+                    description: routeDescription
+                }
+            }
+        ]
+    };
+
     //                           Захар должен Yandex Map API сделать!!!!
 
     if (routeName === null || routeName === '') {
@@ -30,12 +52,14 @@ document.getElementById('create-route-button').addEventListener('click', async (
         isPrivate = true
     }
 
+    //let comments = [] Первоночально при создании маршрута комментариев к нему быть не должно их нужн одобавлять потом.
+
     let data = {
         "name": routeName,
         "description": routeDescription,
         "images": [],
         "data": JSON.stringify({"data": 'YandexAPI_Data'}),
-        "private": isPrivate,
+        "private": isPrivate, //Тут должен быть бул
     }
 
     sendImages()
@@ -70,6 +94,8 @@ function generateIndexOfImages(dataObject) {
 
 
 function generatePost(dataObject) {
+    console.log(dataObject)
+
     http.postNewRoute(JSON.stringify(dataObject)).then((data) => {
         console.log(data)
     }).catch((err) => console.error(err))

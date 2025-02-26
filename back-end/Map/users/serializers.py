@@ -5,8 +5,14 @@ class US(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ["name", "email", "routes","password", "visited"]
+        fields = ["name", "email", "routes","password", "visited", "id"]  #ghhhhfghhghghhgf
         extra_kwargs = {'password': {'write_only': True}}
 
+
+class USSR(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
 
 
