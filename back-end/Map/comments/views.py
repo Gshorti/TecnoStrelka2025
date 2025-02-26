@@ -40,7 +40,7 @@ class CreateCommentView(APIView):
             goida.append(res)
             data = request.data
             data["comments"] = goida
-            new_goida = RS(route, data={"comments":goida})
+            new_goida = RS(route, data=data)
             if new_goida.is_valid():
                 new_goida.save()
 
