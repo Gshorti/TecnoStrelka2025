@@ -39,7 +39,8 @@ class CreateCommentView(APIView):
             goida = goida["comments"]
             goida.append(res)
             new_goida = RS(route, data={"comments":goida})
-
+            if new_goida.is_valid():
+                new_goida.save()
 
             return Response({"result":"Я респонз, сообщающий вам весть об успешной обработке реквеста"}, status=status.HTTP_201_CREATED)
             # return Response(res, status=status.HTTP_201_CREATED)
