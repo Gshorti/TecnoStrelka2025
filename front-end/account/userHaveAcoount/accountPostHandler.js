@@ -1,6 +1,6 @@
-import { HTTP_client } from "./services/httpClient.js";
+import {HTTP_client} from '../../services/httpClient.js'
 
-let http = new HTTP_client();
+let http = new HTTP_client()
 
 let mainDiv = document.getElementById('main-div')
 
@@ -17,18 +17,21 @@ function loadImage(data) {
     return data.image = String(data.image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
 }
 
-function postOnDocumentSetter(object, sysData) {
-    http.getImages(object).then((data) => {
+function postOnDocumentSetter(ids) {
+    http.getImages(ids).then((data) => {
         let temp = loadImage(data[0])
-        newTemplatePost(temp, sysData)
+        console.log(data[0])
+        newTemplatePost(temp)
     })
 }
 
 function getPostsData() {
-    http.getRoutes().then((res) => {
+    let username = localStorage.getItem('username')
+
+    http.getUserRoutes(username).then((res) => {
         console.log(res)
         res.forEach((item) => {
-            postOnDocumentSetter(item.images, item)
+            postOnDocumentSetter(item)
         })
     }).catch((e) => {
         console.error(e)

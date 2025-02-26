@@ -30,14 +30,12 @@ document.getElementById('create-route-button').addEventListener('click', async (
         isPrivate = true
     }
 
-    //let comments = [] Первоночально при создании маршрута комментариев к нему быть не должно их нужн одобавлять потом.
-
     let data = {
         "name": routeName,
         "description": routeDescription,
         "images": [],
         "data": JSON.stringify({"data": 'YandexAPI_Data'}),
-        "private": isPrivate, //Тут должен быть бул
+        "private": isPrivate,
     }
 
     sendImages()
@@ -72,8 +70,6 @@ function generateIndexOfImages(dataObject) {
 
 
 function generatePost(dataObject) {
-    console.log(dataObject)
-
     http.postNewRoute(JSON.stringify(dataObject)).then((data) => {
         console.log(data)
     }).catch((err) => console.error(err))
