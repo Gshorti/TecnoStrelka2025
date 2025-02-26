@@ -39,24 +39,45 @@ function closeAll() {
 }
 
 
-function showNewPointOnRoute(cords) {      // ПЖ, Захар сделай, чтоб из yandexMap.js получалась инфа как-нибудь
-    createMenu.style.display = 'flex'
+function showNewPointOnRoute(cords) {
+    closeAll()
+    return new Promise((resolve) => {
+        createMenu.style.display = 'flex'
+        createMenu.style.top = cords[1] + 10 + 'px'
+        createMenu.style.left = cords[0] + 10 + 'px'
+        createMenu.style.zIndex = '9999'
+        createMenu.style.opacity = '1'
 
-    createMenu.style.top = cords[1] + 10 + 'px'
-    createMenu.style.left = cords[0] + 10 + 'px'
-    createMenu.style.zIndex = '9999'
-    createMenu.style.opacity = '1'
+        document.getElementById('create-button').addEventListener('click', () => {
+            const nameOfPoint = document.getElementById('name-of-point').value.trim()
+            resolve(nameOfPoint)
+            closeAll()
+        })
 
-    return outputToNewPoint
+        dissmisCreateButton.addEventListener('click', () => {
+            resolve(null)
+            closeAll()
+        })
+    })
 }
 
-function managePoint(cords) {      // ПЖ, Захар сделай, чтоб из yandexMap.js получалась инфа как-нибудь
-    pointMenu.style.display = 'flex'
+function managePoint(cords, marker) {
+    closeAll()
+    return new Promise((resolve) => {
+        pointMenu.style.display = 'flex'
+        pointMenu.style.top = cords[1] + 10 + 'px'
+        pointMenu.style.left = cords[0] + 10 + 'px'
+        pointMenu.style.zIndex = '9999'
+        pointMenu.style.opacity = '1'
+        document.getElementById('point-name').innerText = marker
+        document.getElementById('delete-button').addEventListener('click', () => {
+            resolve(true)
+            closeAll()
+        })
 
-    pointMenu.style.top = cords[1] + 10 + 'px'
-    pointMenu.style.left = cords[0] + 10 + 'px'
-    pointMenu.style.zIndex = '9999'
-    pointMenu.style.opacity = '1'
-
-    return isPointDeleted
+        dissmisDeleteButton.addEventListener('click', () => {
+            resolve(false)
+            closeAll()
+        })
+    })
 }

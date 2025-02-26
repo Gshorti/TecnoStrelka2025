@@ -39,9 +39,12 @@ function init() {
     })
 }
 
-function addMarker(coords, pageCords) {
-    isCreatingNewPoint = false
-    let title = showNewPointOnRoute(pageCords) /// через промисы
+async function addMarker(coords, pageCords) {
+    const title = await showNewPointOnRoute(pageCords)
+
+    if (title === null) {
+        return
+    }
 
     const marker = new ymaps.Placemark(coords, {
         balloonContent: title
@@ -53,13 +56,8 @@ function addMarker(coords, pageCords) {
     map.geoObjects.add(marker)
     markers.push(coords)
 
-    if (title === null) {
-        map.geoObjects.remove(marker)
-    }
-
-    marker.events.add('click', function () {
-        let pointIsDel = managePoint(pageCords)
-        console.log(pointIsDel)     /// Сделать через промисы
+    marker.events.add('click', async () => {
+        const pointIsDel = await managePoint(pageCords, marker.properties.get('balloonContent'))    /// Захар, убери показ текста метки
         if (pointIsDel) {
             map.geoObjects.remove(marker)
             markers = markers.filter(markerCoords => markerCoords !== coords)
