@@ -22,28 +22,3 @@ class ComView(ModelViewSet):
 
 
 
-class CreateCommentView(APIView):
-    authentication_classes = [KPtubeAuthentication]
-    permission_classes = [IsAuthenticatedOrReadOnly]
-
-    def post(self, request):
-        serializer = CS(data=request.data)
-        route_ID = request.data["route_ID"]
-        if serializer.is_valid():
-            serializer.save()
-            res = serializer.data
-            res = res["id"]
-            route = r.objects.get(pk=route_ID)
-            goida = RS(route)
-            goida = goida.data
-            goida = goida["comments"]
-            goida.append(res)
-            data = request.data
-            data["comments"] = goida
-            new_goida = RS(route, data=data)
-            if new_goida.is_valid():
-                new_goida.save()
-
-                return Response({"result":"Я респонз, сообщающий вам весть об успешной обработке реквеста"}, status=status.HTTP_201_CREATED)
-            # return Response(res, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
