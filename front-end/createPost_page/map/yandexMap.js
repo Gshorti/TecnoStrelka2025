@@ -12,7 +12,7 @@ function init() {
         controls: ['default', 'routeButtonControl'],
     })
 
-    map.events.add('click', function(e) {
+    map.events.add('click', function (e) {
         const pageX = e.get('pagePixels')[0]
         const pageY = e.get('pagePixels')[1]
         const coords = e.get('coords')
@@ -41,25 +41,28 @@ function init() {
 
 function addMarker(coords, pageCords) {
     isCreatingNewPoint = false
-    let title = showNewPointOnRoute(pageCords)
+    let title = showNewPointOnRoute(pageCords) /// через промисы
 
-    if (title !== null) {
-        const marker = new ymaps.Placemark(coords, {
-            balloonContent: title
-        }, {
-            preset: 'islands#icon',
-            iconColor: '#0095b6'
-        })
+    const marker = new ymaps.Placemark(coords, {
+        balloonContent: title
+    }, {
+        preset: 'islands#icon',
+        iconColor: '#0095b6'
+    })
 
-        map.geoObjects.add(marker)
-        markers.push(coords)
+    map.geoObjects.add(marker)
+    markers.push(coords)
 
-        marker.events.add('click', function () {
-            let pointIsDel = managePoint(pageCords)
-            if (pointIsDel) {
-                map.geoObjects.remove(marker)
-                markers = markers.filter(markerCoords => markerCoords !== coords)
-            }
-        })
+    if (title === null) {
+        map.geoObjects.remove(marker)
     }
+
+    marker.events.add('click', function () {
+        let pointIsDel = managePoint(pageCords)
+        console.log(pointIsDel)     /// Сделать через промисы
+        if (pointIsDel) {
+            map.geoObjects.remove(marker)
+            markers = markers.filter(markerCoords => markerCoords !== coords)
+        }
+    })
 }

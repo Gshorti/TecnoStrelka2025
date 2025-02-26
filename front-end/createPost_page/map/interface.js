@@ -1,4 +1,4 @@
-let routes = document.querySelectorAll('.route-menu')
+let routesMenus = document.querySelectorAll('.route-menu')
 let createMenu = document.querySelector('#new-point-on-route')
 let pointMenu = document.querySelector('#created-point-on-route')
 let dissmisCreateButton = document.getElementById('dismiss-button')
@@ -9,25 +9,34 @@ let nameOfPoint = document.getElementById('name-of-point')
 let isPointDeleted = false
 
 document.getElementById('create-button').addEventListener('click', (e) => {
-    outputToNewPoint = nameOfPoint.trim()
+    outputToNewPoint = nameOfPoint.value.trim()
     document.getElementById('name-of-point').innerText = ''
-    createMenu.style.display = 'none'
+    closeAll()
 })
 
 dissmisCreateButton.addEventListener('click', (e) => {
     outputToNewPoint = null
     document.getElementById('name-of-point').innerText = ''
-    createMenu.style.display = 'none'
+    closeAll()
 })
 
 document.getElementById('delete-button').addEventListener('click', (e) => {
     isPointDeleted = true
-    pointMenu.style.display = 'none'
+    closeAll()
 })
 
 dissmisDeleteButton.addEventListener('click', (e) => {
-    pointMenu.style.display = 'none'
+    closeAll()
 })
+
+
+function closeAll() {
+    for (let i = 0; i < routesMenus.length; i++) {
+        routesMenus[i].style.display = 'none'
+        routesMenus[i].style.opacity = '0'
+        routesMenus[i].style.zIndex = '0'
+    }
+}
 
 
 function showNewPointOnRoute(cords) {      // ПЖ, Захар сделай, чтоб из yandexMap.js получалась инфа как-нибудь
@@ -35,6 +44,8 @@ function showNewPointOnRoute(cords) {      // ПЖ, Захар сделай, ч�
 
     createMenu.style.top = cords[1] + 10 + 'px'
     createMenu.style.left = cords[0] + 10 + 'px'
+    createMenu.style.zIndex = '9999'
+    createMenu.style.opacity = '1'
 
     return outputToNewPoint
 }
@@ -44,6 +55,8 @@ function managePoint(cords) {      // ПЖ, Захар сделай, чтоб и
 
     pointMenu.style.top = cords[1] + 10 + 'px'
     pointMenu.style.left = cords[0] + 10 + 'px'
+    pointMenu.style.zIndex = '9999'
+    pointMenu.style.opacity = '1'
 
     return isPointDeleted
 }
