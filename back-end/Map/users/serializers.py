@@ -9,4 +9,10 @@ class US(ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}}
 
 
+class USSR(ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
+
 
