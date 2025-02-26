@@ -59,7 +59,7 @@ document.getElementById('create-route-button').addEventListener('click', async (
         "description": routeDescription,
         "images": [],
         "data": JSON.stringify({"data": 'YandexAPI_Data'}),
-        "private": isPrivate, //Тут должтен быть бул
+        "private": isPrivate, //Тут должен быть бул
     }
 
     sendImages()
@@ -91,6 +91,8 @@ function generateIndexOfImages(dataObject) {
     )
 }
 
+
+
 function generatePost(dataObject) {
     console.log(dataObject)
 
@@ -98,4 +100,3 @@ function generatePost(dataObject) {
         console.log(data)
     }).catch((err) => console.error(err))
 }
-

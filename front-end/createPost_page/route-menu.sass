@@ -20,7 +20,15 @@ $color-of-segments: #254C59
   top: -1000px
   left: -1000px
   z-index: 9999
-  border: 2px solid white
+
+  .create, .dismiss
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 10px
+    border-radius: 5px
+    outline: none
+    background: #D6F6FF
 
   .point-name
     width: 100%
@@ -35,15 +43,6 @@ $color-of-segments: #254C59
       border: none
       outline: none
 
-  .create, .dismiss
-    display: flex
-    justify-content: center
-    align-items: center
-    padding: 10px
-    border-radius: 5px
-    border: none
-    outline: none
-    background: #D6F6FF
 
 
 #created-point-on-route

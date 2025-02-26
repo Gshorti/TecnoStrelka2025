@@ -4,16 +4,16 @@ export class HTTP_request {
             const response = await fetch(url, {
                 method: 'GET',
                 headers: headers,
-            });
+            })
 
             if (!response.ok) {
-                return Promise.reject(response);
+                return Promise.reject(response)
             }
 
-            const data = await response.json();
-            return data;
+            const data = await response.json()
+            return data
         } catch (error) {
-            return Promise.reject(new Error(error.message));
+            return Promise.reject(new Error(error.message))
         }
     }
 
@@ -22,17 +22,17 @@ export class HTTP_request {
             const response = await fetch(url, {
                 method: "POST",
                 headers: headers,
-                body: body, // body теперь может быть FormData
-            });
+                body: body,
+            })
     
             if (!response.ok) {
-                return Promise.reject(response);
+                return Promise.reject(response)
             }
     
-            const data = await response.json();
-            return data;
+            const data = await response.json()
+            return data
         } catch (error) {
-            return Promise.reject(new Error(error.message));
+            return Promise.reject(new Error(error.message))
         }
     }
     async put(url, body, headers) {
@@ -40,17 +40,17 @@ export class HTTP_request {
             const response = await fetch(url, {
                 method: "PUT",
                 headers: headers,
-                body: body, // body теперь может быть FormData
-            });
+                body: body,
+            })
     
             if (!response.ok) {
-                return Promise.reject(response);
+                return Promise.reject(response)
             }
     
-            const data = await response.json();
-            return data;
+            const data = await response.json()
+            return data
         } catch (error) {
-            return Promise.reject(new Error(error.message));
+            return Promise.reject(new Error(error.message))
         }
     }    
 }
