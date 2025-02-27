@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet">
-
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_UA&apikey=97ef513c-e805-4a4e-ae45-93bd71395f5f" type="text/javascript"></script>
+    <script type="module" src="map/getYandexMap.js"></script>
     <script type="module" src="getPostData.js"></script>
 </head>
 <body>
@@ -28,6 +29,9 @@
 </header>
 <main>
     <div class="container">
+        <span class="route">
+            <div class="map" id="map" style="width: 600px; height: 600px; z-index: 3"></div>
+        </span>
         <div class="main-info-container">
             <span class="main-photo-of-route">
                 <img src="#" id="main-image" width="300" height="300" alt="#">
@@ -56,10 +60,6 @@
 
         <div class="route-container">
             <span class="route">
-
-<!--                TODO
-                     абсолютно ВСЁ связанное с маршрутом на Захаре -->
-
             </span>
             <span class="route-interactive-buttons">
                 <button class="big content-button">

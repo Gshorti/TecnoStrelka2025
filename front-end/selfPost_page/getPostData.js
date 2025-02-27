@@ -107,7 +107,9 @@ function commentsOnDocumentSetter(object) {
     })
 }
 
-window.onload = function () {
+let coordinates = []
+
+window.onload = function getRoutesData() {
     let selectedPost = localStorage.getItem('selectedPost')
 
     let mainImage = localStorage.getItem('postMainImage')
@@ -124,6 +126,14 @@ window.onload = function () {
             currentComments = data.comments
             routeId = data.id
 
+            let coords = data.data
+
+
+            for (let i=0; i < coords.length; i++) {
+                coordinates.push(coords[i]);
+                console.log(coordinates)
+            }
+
             http.getUser(username).then((user) => {
                 if (user[0].visited.includes(routeId)) {
                     let checkbox = document.getElementById('checkbox-if-visit')
@@ -131,6 +141,7 @@ window.onload = function () {
                 }
             })
         })
-
     }
 }
+
+export { coordinates }
