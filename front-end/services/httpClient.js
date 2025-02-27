@@ -2,12 +2,13 @@ import {HTTP_request} from './HTTP_request.js';
 
 export class HTTP_client {
     constructor() {
-        this.http = new HTTP_request();
-        this.images_API = 'https://www.kringeproduction.ru/images/'
-        this.routes_API = 'https://www.kringeproduction.ru/routes/'
-        this.comments_API = 'https://www.kringeproduction.ru/comments/'
-        this.users_API = 'https://www.kringeproduction.ru/users/'
-        this.createUser_API = 'https://www.kringeproduction.ru/create_user/'
+        this.http = new HTTP_request()
+        this.master_link = 'www.kringeproduction.ru/'
+        this.images_API = 'https://' + this.master_link + 'images/'
+        this.routes_API = 'https://' + this.master_link + 'routes/'
+        this.comments_API = 'https://' + this.master_link + 'comments/'
+        this.users_API = 'https://' + this.master_link + 'users/'
+        this.createUser_API = 'https://' + this.master_link + 'create_user/'
     }
 
     setHeaders(current_headers) {
@@ -25,9 +26,18 @@ export class HTTP_client {
     }
 
     async getRoutes() {
-        return this.http.get(this.routes_API, {
+        let data = []
+        await this.http.get(this.routes_API, {
             "Accept": "application/json",
+        }).then(res => {
+            res.forEach((item) => {
+                console.log(item.review)
+                if (item.review === 'g') {
+                    data.push(item)
+                }
+            })
         })
+        return await data
     }
 
     async getRoute(routeID) {
@@ -254,5 +264,10 @@ export class HTTP_client {
         }
 
         return await this.http.put(this.users_API + userId + '/', JSON.stringify(body), headers)
+    }
+
+    imagePipe(image) {
+        image = String(image).replace('127.0.0.1:8001/', `${this.master_link}files/`)
+        return image
     }
 }
