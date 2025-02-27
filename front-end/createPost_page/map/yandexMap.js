@@ -1,10 +1,12 @@
 ymaps.ready(init)
-let map
+let map = null;
 let markers = []
 let userCoords = []
 let isCreatingNewPoint = false
 let pageCords = []
 let exportButton = document.getElementById('export-map-by-geojson')
+
+
 
 let geoJsonData = {
     type: "FeatureCollection",
@@ -29,7 +31,7 @@ function init() {
         const coords = e.get('coords')
         isCreatingNewPoint = true
 
-        console.log("Добавление маркера с координатамиъ:", coords);
+        console.log("Добавление маркера с координатами:", coords);
 
         geoJsonData.features.push({
             type: "Feature",
@@ -42,7 +44,7 @@ function init() {
             }
         });
 
-        console.log("Текущие данные гойдаДЖСОН:", geoJsonData);
+        console.log("Текущие данные GeoJSON:", geoJsonData);
 
         addMarker(coords, [pageX, pageY])
     })
@@ -68,6 +70,7 @@ function init() {
     document.getElementById('export-map-by-geojson').addEventListener('click', function () {
         const geoJson = getGeoJSON(map);
         console.log(JSON.stringify(geoJson, null, 2));
+
     });
 
 }
@@ -102,22 +105,53 @@ function addMarker(coords, pageCords) {
 }
 
 function getGeoJSON(map) {
+
+    if (!map) {
+        console.log('Map is not loaded');
+        return console.error('Map is not loaded');
+    }
+
     const features = [];
 
     map.geoObjects.each(function (geoObject) {
-        const geometry = geoObject.geometry;
-        const properties = geoObject.properties;
+        let geometryType = null;
+        let coordinates = null;
 
-        features.push({
-            type: "Feature",
-            geometry: {
-                type: geometry.type,
-                coordinates: geometry.coordinates
-            },
-            properties: {
-                balloonContent: properties.balloonContent
+        // если объект является геометрией => отправляем координаты
+
+        if (geoObject.geometry) {
+            if (geoObject.geometry.getType() === "Point") {
+                geometryType = "Point";
+                coordinates = geoObject.geometry.getCoordinates();
+            } else if (geoObject.geometry.getType() === "LineString") {
+                geometryType = "LineString";
+                coordinates = geoObject.geometry.getCoordinates();
+            } else if (geoObject.geometry.getType() === "Polygon") {
+                geometryType = "Polygon";
+                coordinates = geoObject.geometry.getCoordinates();
             }
-        });
+        }
+
+        // Определение маршрута и добавление его координат
+
+        if (geoObject instanceof ymaps.multiRouter.MultiRoute) {
+            geometryType = "LineString";
+            coordinates = geoObject.getPaths().get(0).geometry.getCoordinates(); // error!
+        }
+
+        // если объект имеет геометрию и кооридинаты => дооабавляем в GeoJSON
+
+
+        if (geometryType && coordinates) {
+            features.push({
+                type: "Feature",
+                geometry: {
+                    type: geometryType,
+                    coordinates: coordinates
+                },
+                properties: geoObject.properties.getAll() || {}
+            });
+        }
     });
 
     return {
