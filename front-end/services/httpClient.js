@@ -3,12 +3,14 @@ import {HTTP_request} from './HTTP_request.js';
 export class HTTP_client {
     constructor() {
         this.http = new HTTP_request()
-        this.master_link = 'www.kringeproduction.ru/'
-        this.images_API = 'https://' + this.master_link + 'images/'
-        this.routes_API = 'https://' + this.master_link + 'routes/'
-        this.comments_API = 'https://' + this.master_link + 'comments/'
-        this.users_API = 'https://' + this.master_link + 'users/'
-        this.createUser_API = 'https://' + this.master_link + 'create_user/'
+        // TODO перед релизом урлы выставить в соответсвии с комментариями!!!!!!!!
+        this.master_link = 'https://www.kringeproduction.ru/' // http://localhost:8000/
+        this.files_master_link = 'https://www.kringeproduction.ru/' // http://localhost:8040/
+        this.images_API =  this.master_link + 'images/'
+        this.routes_API = this.master_link + 'routes/'
+        this.comments_API = this.master_link + 'comments/'
+        this.users_API = this.master_link + 'users/'
+        this.createUser_API = this.master_link + 'create_user/'
     }
 
     setHeaders(current_headers) {
@@ -267,7 +269,7 @@ export class HTTP_client {
     }
 
     imagePipe(image) {
-        image = String(image).replace('127.0.0.1:8001/', `${this.master_link}files/`)
+        image = String(image).replace('http://127.0.0.1:8001/', `${this.files_master_link}files/`)
         return image
     }
 }
