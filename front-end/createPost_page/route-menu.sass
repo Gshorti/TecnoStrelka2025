@@ -15,20 +15,25 @@ $color-of-segments: #254C59
   z-index: 9999
   pointer-events: auto
 
+
 #new-point-on-route
   position: absolute
   top: -1000px
   left: -1000px
   z-index: 9999
 
-  .create, .dismiss
-    display: flex
-    justify-content: center
-    align-items: center
-    padding: 10px
-    border-radius: 5px
-    outline: none
-    background: #D6F6FF
+  .point-controls
+    .create
+      display: flex
+      justify-content: center
+      align-items: center
+      padding: 10px
+      border-radius: 5px
+      outline: none
+      background: #D6F6FF
+
+    .dismiss
+      background: #ec6868
 
   .point-name
     width: 100%

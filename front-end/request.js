@@ -1,6 +1,6 @@
 import { HTTP_client } from "./services/httpClient.js";
 
-let http = new HTTP_client();
+let http = new HTTP_client()
 
 let mainDiv = document.getElementById('main-div')
 

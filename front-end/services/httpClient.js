@@ -68,7 +68,13 @@ export class HTTP_client {
             }
         )
 
-        return data.filter(image => ids.includes(image.id))
+        return await data.filter(image => ids.includes(image.id))
+    }
+
+    async getImagesCount() {
+        return await this.http.get(this.images_API, {
+            'Accept': 'application/json'
+        })
     }
 
     async getComments(ids) {
@@ -112,16 +118,6 @@ export class HTTP_client {
         }
 
         return this.http.post(this.routes_API, routeData, headers)
-    }
-
-
-
-    async getRoutes() {
-        const response = this.http.get(this.routes_API, {
-            "Accept": "application/json",
-        })
-
-        return response
     }
 
     async getUsers() {
