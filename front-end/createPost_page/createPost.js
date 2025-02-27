@@ -53,16 +53,16 @@ function sendImages(OBJ) {
 
 function generateIndexOfImages(dataObject) {
     let imagesCount = filesArray.length
+    let imagesIds = []
     http.getImagesCount().then(data => {
-        let imagesIds = []
         let lastImg = data.at(-1).id
         for (let i = 0; i < imagesCount; i++) {
-            imagesIds.push(Number(lastImg + 1))
+            imagesIds.push(Number(lastImg + i))
         }
         return imagesIds
     }).then(
         data => {
-            dataObject.images = data
+            dataObject.images = imagesIds
             dataObject.data = markers
             generatePost(dataObject)
         }
