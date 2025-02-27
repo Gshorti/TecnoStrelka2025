@@ -19,7 +19,7 @@ class Routes(models.Model):
     data = models.JSONField(null=True, blank=True, default=dict)
     comments = models.JSONField(default=list, blank=True)
     images = models.ManyToManyField(Image, null=True)
-    history = models.JSONField(default=list, null=True)
+    history = models.JSONField(default=list, null=True, blank=True)
     description = models.TextField(null=False, default="YTNE")
     private = models.BooleanField(default=False)
     review = models.CharField(max_length=20, choices=choices, default="unconfirmed")
