@@ -8,32 +8,6 @@ document.getElementById('create-route-button').addEventListener('click', async (
     let routePrivate = document.getElementById('route-availability-input').value
     let isPrivate = false
 
-
-    let routeData = document.getElementById('map').value
-
-    let geoJsonData = {
-        type: "FeatureCollection",
-        features: [
-            {
-                type: "Feature",
-                geometry: {
-                    type: "LineString", // Тип геометрии, например, LineString для маршрута
-                    coordinates: [
-                        [102.0, 0.5],
-                        [103.0, 0.5],
-                        [104.0, 0.5]
-                    ]
-                },
-                properties: {
-                    name: routeName,
-                    description: routeDescription
-                }
-            }
-        ]
-    };
-
-    //                           Захар должен Yandex Map API сделать!!!!
-
     if (routeName === null || routeName === '') {
         showErrorPopup()
         return
@@ -51,32 +25,35 @@ document.getElementById('create-route-button').addEventListener('click', async (
     } else {
         isPrivate = true
     }
-
-    //let comments = [] Первоночально при создании маршрута комментариев к нему быть не должно их нужн одобавлять потом.
+    if (markers === []) {
+        showErrorPopup()
+        return
+    }
 
     let data = {
         "name": routeName,
         "description": routeDescription,
         "images": [],
-        "data": JSON.stringify({"data": 'YandexAPI_Data'}),
-        "private": isPrivate, //Тут должен быть бул
+        "data": JSON.stringify(markers),
+        "private": Boolean(isPrivate),
     }
 
-    sendImages()
-    generateIndexOfImages(data)
+    sendImages(data)
 })
 
-function sendImages() {
+function sendImages(OBJ) {
     http.postImages(filesArray).then(
         data => {
             console.log(data)
         }
-    )
+    ).finally( output => {
+        generateIndexOfImages(OBJ)
+    })
 }
 
 function generateIndexOfImages(dataObject) {
     let imagesCount = filesArray.length
-    http.getImages().then(data => {
+    http.getImagesCount().then(data => {
         let imagesIds = []
         let lastImg = data.at(-1).id
         for (let i = 0; i < imagesCount; i++) {
@@ -86,16 +63,14 @@ function generateIndexOfImages(dataObject) {
     }).then(
         data => {
             dataObject.images = data
+            dataObject.data = markers
             generatePost(dataObject)
         }
     )
 }
 
-
-
 function generatePost(dataObject) {
     console.log(dataObject)
-
     http.postNewRoute(JSON.stringify(dataObject)).then((data) => {
         console.log(data)
     }).catch((err) => console.error(err))
