@@ -6,7 +6,6 @@ let unratedStarPath = '../static/img/unratedStar.svg'
 let currentStarsValue = 0
 
 function getStarsOnPost(numberOfStars) {
-    currentStarsValue = numberOfStars
 
     for (let i = 0; i < numberOfStars; i++) {
         allStars[i].src = ratedStarPath
@@ -16,4 +15,5 @@ function getStarsOnPost(numberOfStars) {
             allStars[j].src = unratedStarPath
         }
     }
+    currentStarsValue = numberOfStars
 }

@@ -1,11 +1,14 @@
 import {HTTP_client} from '../services/httpClient.js'
 
 let http = new HTTP_client()
+
 let postComments = []
 let routeId = 0
 let currentComments = []
 let username = String(localStorage.getItem('username'))
-let isVisited = false
+let coordinates = []
+
+
 
 var debounce = function (fn, t) {
     let timer
@@ -107,8 +110,6 @@ function commentsOnDocumentSetter(object) {
     })
 }
 
-let coordinates = []
-
 window.onload = function getRoutesData() {
     let selectedPost = localStorage.getItem('selectedPost')
 
@@ -128,6 +129,9 @@ window.onload = function getRoutesData() {
 
             let coords = data.data
 
+            console.log(coords)
+            coordinatesHandler(coords)
+
 
             for (let i=0; i < coords.length; i++) {
                 coordinates.push(coords[i]);
@@ -143,5 +147,3 @@ window.onload = function getRoutesData() {
         })
     }
 }
-
-export { coordinates }
