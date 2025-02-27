@@ -24,9 +24,19 @@ services:
       context: ./front-end/
     volumes:
       - ./front-end:/usr/share/nginx/html/
-      - ./back-end/Map/images:/usr/share/nginx/html/
     ports:
      - "8060:80"
+    environment:
+     - NGINX_PORT=8060
+
+
+  files:
+    build:
+      context: ./back-end/Map/images
+    volumes:
+      - ./back-end/Map/images:/usr/share/nginx/html/
+    ports:
+     - "8040:80"
     environment:
      - NGINX_PORT=8060
 
