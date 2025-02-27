@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="route-menu.css">
     <script type="module" src="createPost.js"></script>
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_UA&apikey=262210b3-3ea4-4122-8b7d-9f66b570b11c" type="text/javascript"></script>
+    <script type="text/javascript" src="map/yandexMap.js"></script>
 </head>
 <body>
     <header>
@@ -22,8 +23,6 @@
                 <span class="hello-part">
                     <h1>Создайте свой маршрут</h1>
                 </span>
-            <script type="text/javascript" src="map/yandexMap.js"></script>
-
             <div class="create-route" id="route-form">
                     <span class="route-name">
                         <label for="route-name-input">Назовите маршрут:</label>
@@ -35,7 +34,7 @@
 <!--                <span class="import-route">-->
 <!--                    <button onclick="openPopup()" class="import">Импорт</button>-->
 <!--                </span>-->
-                <button id="export-map-by-geojson">Тык</button>
+<!--                <button id="export-map-by-geojson">Тык</button>-->
                 <span class="images-of-route"
                       id="images-or-route"
                       onwheel="wheelOnBar(event)">
