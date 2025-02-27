@@ -7,8 +7,7 @@ let routeId = 0
 let currentComments = []
 let username = String(localStorage.getItem('username'))
 let coordinates = []
-
-
+let routeName
 
 var debounce = function (fn, t) {
     let timer
@@ -49,7 +48,8 @@ document.querySelector('.make-reaction').addEventListener('click', () => {
     closePopUp()
     newTemplateComment(comment.name, comment.text, comment.like)
     http.postComments(comment).then(data => {
-        http.updateRoute(data, routeId, currentComments).then((out) => {})
+        http.updateRoute(data, routeId, currentComments).then((out) => {
+        })
     }).catch(err => {
         console.error(err)
     })
@@ -79,7 +79,8 @@ function newTemplateComment(name, text, likes) {
 }
 
 function loadImage(data) {
-    data.image = String(data.image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
+    data.image = http.imagePipe(data.image)
+    console.log(data.image)
     newTemplateImage(data.image)
 }
 
@@ -110,40 +111,61 @@ function commentsOnDocumentSetter(object) {
     })
 }
 
-window.onload = function getRoutesData() {
-    let selectedPost = localStorage.getItem('selectedPost')
+function firstDataHandler(data) {
+    let imageParsed = http.getImages([data.images[0]])
+    imageParsed.then((data) => {
+        let mainImage = String(data[0].image)
+        mainImage = http.imagePipe(mainImage)
+        document.getElementById('main-image').src = mainImage
+    })
 
-    let mainImage = localStorage.getItem('postMainImage')
-    let postName = localStorage.getItem('postName')
+    document.getElementById('route-name').innerText = data.name
+    document.getElementById('route-description').innerText = data.description
 
-    document.getElementById('main-image').src = mainImage
-    document.getElementById('route-name').innerText = postName
-
-    if (selectedPost) {
-        http.getRoute(JSON.parse(selectedPost).id).then(data => {
-            document.getElementById('route-description').innerText = String(data.description)
-            postOnDocumentSetter(data.images)
-            commentsOnDocumentSetter(data.comments)
-            currentComments = data.comments
-            routeId = data.id
-
-            let coords = data.data
-
-            console.log(coords)
-            coordinatesHandler(coords)
-
-
-            for (let i=0; i < coords.length; i++) {
-                coordinates.push(coords[i]);
-                console.log(coordinates)
-            }
-
-            http.getUser(username).then((user) => {
-                if (user[0].visited.includes(routeId)) {
-                    let checkbox = document.getElementById('checkbox-if-visit')
-                    checkbox.checked = true
-                }
-            })
-        })
-    }
 }
+
+function getRoutesData() {
+    let ids = window.location.search
+    let splitedID = ids.split('=')[1]
+
+    http.getRoute(splitedID).then(data => {
+        document.getElementById('route-description').innerText = String(data.description)
+
+        firstDataHandler(data)
+        postOnDocumentSetter(data.images)
+        commentsOnDocumentSetter(data.comments)
+
+        routeName = data.name
+        currentComments = data.comments
+        routeId = data.id
+
+        let coords = data.data
+        coordinatesHandler(coords)
+
+        for (let i = 0; i < coords.length; i++) {
+            coordinates.push(coords[i]);
+        }
+
+        http.getUser(username).then((user) => {
+            if (user[0].visited.includes(routeId)) {
+                let checkbox = document.getElementById('checkbox-if-visit')
+                checkbox.checked = true
+            }
+        })
+    })
+}
+
+getRoutesData()
+
+document.getElementById('sharePost').addEventListener('click', async function (e) {
+    try {
+        this.shareData = {
+            title: routeName,
+            url: window.location.href,
+        };
+
+        await navigator.share(this.shareData)
+    } catch (err) {
+        console.error(err)
+    }
+})

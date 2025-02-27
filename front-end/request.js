@@ -14,7 +14,7 @@ function newTemplatePost(link, data) {
 }
 
 function loadImage(data) {
-    return data.image = String(data.image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
+    return data.image = http.imagePipe(data.image)
 }
 
 function postOnDocumentSetter(object, sysData) {
@@ -25,12 +25,17 @@ function postOnDocumentSetter(object, sysData) {
 }
 
 function getPostsData() {
-    http.getRoutes().then((res) => {
-        console.log(res)
-        res.forEach((item) => {
-            postOnDocumentSetter(item.images, item)
-        })
-    }).catch((e) => {
+
+    // TODO
+    //  CHECK IF WORK CORRECT:
+
+    http.getRoutes().then(
+        res => {
+            res.forEach((item) => {
+                postOnDocumentSetter(item.images, item)
+            })
+        }
+    ).catch((e) => {
         console.error(e)
     })
 }
