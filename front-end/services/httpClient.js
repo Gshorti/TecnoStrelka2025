@@ -30,9 +30,14 @@ export class HTTP_client {
         await this.http.get(this.routes_API, {
             "Accept": "application/json",
         }).then(res => {
-            data = res
+            res.forEach((item) => {
+                console.log(item.review)
+                if (item.review === 'g') {
+                    data.push(item)
+                }
+            })
         })
-        return data.filter(route => route.review === 'good')
+        return await data
     }
 
     async getRoute(routeID) {

@@ -25,12 +25,9 @@ function postOnDocumentSetter(object, sysData) {
 }
 
 function getPostsData() {
-
-    // TODO
-    //  CHECK IF WORK CORRECT:
-
     http.getRoutes().then(
         res => {
+            console.log(res)
             res.forEach((item) => {
                 postOnDocumentSetter(item.images, item)
             })
