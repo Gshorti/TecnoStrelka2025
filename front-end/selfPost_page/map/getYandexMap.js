@@ -1,22 +1,22 @@
-import { coordinates } from '../getPostData.js'
+let cords = []
 
-ymaps.ready(init);
+function coordinatesHandler(coordinates) {
+    cords = coordinates
+    console.log(cords)
+    ymaps.ready(init)
+}
 
 function init() {
-    const map = new ymaps.Map("map", {
-        zoom: 10,
+    let map = new ymaps.Map("map", {
+        zoom: 11,
         center: [0, 0],
-    });
-
-    if (coordinates && coordinates.length > 0) {
-        coordinates.forEach(coord => {
-            const placemark = new ymaps.Placemark(coord);
-            map.geoObjects.add(placemark);
-        });
-
-        map.setCenter(coordinates[0]);
-    } else {
-        console.error('Координаты не найдены или пусты');
-        console.log(`${coordinates}`)
-    }
+    }),
+        path = new ymaps.GeoObject({
+            geometry: {
+                type: "LineString",
+                coordinates: cords
+            }
+        })
+    map.geoObjects.add(path)
+    map.panTo(cords[0])
 }
