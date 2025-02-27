@@ -3,7 +3,7 @@ import {HTTP_request} from './HTTP_request.js';
 export class HTTP_client {
     constructor() {
         this.http = new HTTP_request()
-        // TODO перед релизом урлы выставить в соответсвии с комментариями!!!!!!!!
+        // перед релизом урлы выставить в соответсвии с комментариями!!!!!!!!
         this.master_link = 'https://www.kringeproduction.ru/' // http://localhost:8000/
         this.files_master_link = 'https://www.kringeproduction.ru/' // http://localhost:8040/
         this.images_API =  this.master_link + 'images/'
