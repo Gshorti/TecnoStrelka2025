@@ -20,6 +20,18 @@
   left: -1000px;
   z-index: 9999;
 }
+#new-point-on-route .point-controls .create {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  background: #D6F6FF;
+}
+#new-point-on-route .point-controls .dismiss {
+  background: #ec6868;
+}
 #new-point-on-route .point-name {
   width: 100%;
   display: flex;
@@ -27,27 +39,11 @@
   gap: 20px;
 }
 #new-point-on-route .point-name input {
+  width: 100%;
   padding: 5px;
   border-radius: 5px;
   border: none;
   outline: none;
-}
-#new-point-on-route .point-controls {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-#new-point-on-route .point-controls button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  outline: none;
-}
-#new-point-on-route .point-controls .create {
-  background: #D6F6FF;
 }
 
 #created-point-on-route {
@@ -55,6 +51,4 @@
   top: -1000px;
   left: -1000px;
   z-index: 9999;
-}
-
-/*# sourceMappingURL=route-menu.css.map */
+}/*# sourceMappingURL=route-menu.css.map */
