@@ -86,16 +86,19 @@ footer {
   width: 25vw;
   height: 40vh;
   background: #254C59;
-  border-radius: 50px;
+  border-radius: 25px;
 }
 .main-div .post .image-of-post-container img {
   width: 250px;
   height: 250px;
+  border-radius: 25px;
 }
 .main-div .post .name-of-post-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 90%;
+  line-break: anywhere;
 }
 .main-div .post .name-of-post-container .name-of-post {
   color: white;

@@ -4,9 +4,9 @@ export class HTTP_client {
     constructor() {
         this.http = new HTTP_request()
         // перед релизом урлы выставить в соответсвии с комментариями!!!!!!!!
-        this.link_to_change = 'localhost:8001' // localhost:8001
-        this.master_link = 'http://localhost:8001/' // http://localhost:8001/
-        this.files_master_link = 'localhost:8040/' // localhost:8040/
+        this.link_to_change = '127.0.0.1:8001' // localhost:8001
+        this.master_link = 'https://www.kringeproduction.ru/' // http://localhost:8001/
+        this.files_master_link = 'www.kringeproduction.ru/files' // localhost:8040/
         this.images_API =  this.master_link + 'images/'
         this.routes_API = this.master_link + 'routes/'
         this.comments_API = this.master_link + 'comments/'
@@ -187,13 +187,29 @@ export class HTTP_client {
         } catch (e) {
             throw new Error(e.message)
         }
-        const response = await this.http.get(this.users_API + `?name=${userName}`, headers).then(
+        const response = await this.http.get(this.users_API, headers).then(
             (rel) => {
                 data = rel
             }
         )
 
-        return data[0]
+        return data.filter(user => user.name === userName)[0]
+    }
+
+    async addUserRoute(userId, routId) {
+        let headers = {
+            "Accept": 'application/json',
+            "content-type": 'application/json',
+        }
+        try {
+            headers = this.setHeaders(headers)
+        } catch (e) {
+            throw new Error(e.message)
+        }
+
+        let body = {}
+
+        return await this.http.put(this.users_API + userId + '/', body, headers)
     }
 
     async updateRoute(commentData, routeId, currentComments) {
@@ -253,37 +269,9 @@ export class HTTP_client {
         return await this.http.put(this.users_API + userId + '/', JSON.stringify(body), headers)
     }
 
-    async userCreatedARoute(routeId, userId, userMail, currentRoutes) {
-        let headers = {
-            "Accept": "application/json",
-            "Content-type": 'application/json',
-        }
-        try {
-            headers = this.setHeaders(headers)
-        } catch (e) {
-            throw new Error(e.message)
-        }
-
-        if (!Array.isArray(currentRoutes)) {
-            currentRoutes = []
-        }
-
-        currentRoutes.push(routeId)
-
-        let username = String(localStorage.getItem('username'))
-
-        let body = {
-            'routes': currentRoutes,
-            'name': username,
-            'email': userMail,
-            'password': String(localStorage.getItem('password'))
-        }
-
-        return await this.http.put(this.users_API + userId + '/', JSON.stringify(body), headers)
-    }
-
     imagePipe(image) {
-        image = image.replace(this.link_to_change, this.files_master_link)
+        image = String(image).replace(this.link_to_change, this.files_master_link)
+        console.log(image)
         return image
     }
 }

@@ -14,7 +14,9 @@ function newTemplatePost(link, data) {
 }
 
 function loadImage(data) {
-    return data.image = http.imagePipe(data.image)
+    data.image = http.imagePipe(data.image)
+    console.log(data.image)
+    return data.image
 }
 
 function postOnDocumentSetter(object, sysData) {
