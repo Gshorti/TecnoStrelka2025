@@ -3,7 +3,7 @@ services:
     build:
       context: ./back-end/
     ports: 
-      - "8000:8000"
+      - "8001:8000"
     volumes:
       - ./back-end/Map:/Map
 
@@ -34,7 +34,7 @@ services:
     build:
       context: ./back-end/Map/images
     volumes:
-      - ./back-end/Map/images:/usr/share/nginx/html/
+      - ./back-end/Map/images:/usr/share/nginx/html/images/
     ports:
      - "8040:80"
     environment:
