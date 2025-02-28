@@ -92,8 +92,12 @@ footer {
   width: 250px;
   height: 250px;
 }
+.main-div .post .name-of-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .main-div .post .name-of-post-container .name-of-post {
-  width: 300px;
   color: white;
   line-break: anywhere;
 }
