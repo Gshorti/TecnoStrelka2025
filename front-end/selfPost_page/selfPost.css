@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
 @media screen and (min-width: 320px) and (max-width: 560px) {
   header {
     position: fixed !important;
@@ -5,7 +6,25 @@
     left: 0 !important;
     right: 0 !important;
   }
+  .main-div {
+    grid-template-columns: repeat(1, minmax(100px, auto)) !important;
+  }
+  .main-div .post {
+    width: 80vw !important;
+  }
 }
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Roboto, sans-serif;
+  font-weight: 300;
+  width: 100%;
+  overflow-x: hidden;
+}
+
 header {
   background-color: #fff;
   width: auto;
