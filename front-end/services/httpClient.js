@@ -187,29 +187,13 @@ export class HTTP_client {
         } catch (e) {
             throw new Error(e.message)
         }
-        const response = await this.http.get(this.users_API, headers).then(
+        const response = await this.http.get(this.users_API + `?name=${userName}`, headers).then(
             (rel) => {
                 data = rel
             }
         )
 
-        return data.filter(user => user.name === userName)[0]
-    }
-
-    async addUserRoute(userId, routId) {
-        let headers = {
-            "Accept": 'application/json',
-            "content-type": 'application/json',
-        }
-        try {
-            headers = this.setHeaders(headers)
-        } catch (e) {
-            throw new Error(e.message)
-        }
-
-        let body = {}
-
-        return await this.http.put(this.users_API + userId + '/', body, headers)
+        return data[0]
     }
 
     async updateRoute(commentData, routeId, currentComments) {
@@ -261,6 +245,35 @@ export class HTTP_client {
 
         let body = {
             'visited': currentVisited,
+            'name': username,
+            'email': userMail,
+            'password': String(localStorage.getItem('password'))
+        }
+
+        return await this.http.put(this.users_API + userId + '/', JSON.stringify(body), headers)
+    }
+
+    async userCreatedARoute(routeId, userId, userMail, currentRoutes) {
+        let headers = {
+            "Accept": "application/json",
+            "Content-type": 'application/json',
+        }
+        try {
+            headers = this.setHeaders(headers)
+        } catch (e) {
+            throw new Error(e.message)
+        }
+
+        if (!Array.isArray(currentRoutes)) {
+            currentRoutes = []
+        }
+
+        currentRoutes.push(routeId)
+
+        let username = String(localStorage.getItem('username'))
+
+        let body = {
+            'routes': currentRoutes,
             'name': username,
             'email': userMail,
             'password': String(localStorage.getItem('password'))

@@ -65,13 +65,6 @@ function init() {
             zoom: 2
         })
     })
-
-    document.getElementById('export-map-by-geojson').addEventListener('click', function () {
-        const geoJson = getGeoJSON(map)
-        console.log(JSON.stringify(geoJson, null, 2))
-
-    })
-
 }
 
 async function addMarker(coords, pageCords) {
@@ -99,49 +92,4 @@ async function addMarker(coords, pageCords) {
             geoJsonData.features = geoJsonData.features.filter(feature => feature.geometry.coordinates.toString() !== coords.toString())
         }
     })
-}
-
-function getGeoJSON(map) {
-
-    if (!map) {
-        return console.error('Map is not loaded')
-    }
-
-    const features = []
-
-    console.log(map.geoObjects)
-
-    map.geoObjects.each(function (geoObject) {
-        let geometryType = null
-        let coordinates = null
-
-        if (geoObject.geometry) {
-            if (geoObject.geometry.getType() === "Point") {
-                geometryType = "Point"
-                coordinates = geoObject.geometry.getCoordinates()
-            } else if (geoObject.geometry.getType() === "LineString") {
-                geometryType = "LineString"
-                coordinates = geoObject.geometry.getCoordinates()
-            } else if (geoObject.geometry.getType() === "Polygon") {
-                geometryType = "Polygon"
-                coordinates = geoObject.geometry.getCoordinates()
-            }
-        }
-
-        if (geometryType && coordinates) {
-            features.push({
-                type: "Feature",
-                geometry: {
-                    type: geometryType,
-                    coordinates: coordinates
-                },
-                properties: geoObject.properties.getAll() || {}
-            })
-        }
-    })
-
-    return {
-        type: "FeatureCollection",
-        features: features
-    }
 }

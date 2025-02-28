@@ -26,7 +26,6 @@ function setIsVisited() {
     })
 }
 
-
 let deb = debounce(setIsVisited, 1500)
 
 document.getElementById('checkbox-if-visit').addEventListener('click', (e) => {

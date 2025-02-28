@@ -17,21 +17,20 @@ function loadImage(data) {
     return data.image = String(data.image).replace('127.0.0.1:8001/', 'www.kringeproduction.ru/files/')
 }
 
-function postOnDocumentSetter(ids) {
+function postOnDocumentSetter(ids, postData) {
     http.getImages(ids).then((data) => {
         let temp = loadImage(data[0])
-        console.log(data[0])
-        newTemplatePost(temp)
+        newTemplatePost(temp, postData)
     })
 }
 
 function getPostsData() {
     let username = localStorage.getItem('username')
-
     http.getUserRoutes(username).then((res) => {
-        console.log(res)
-        res.forEach((item) => {
-            postOnDocumentSetter(item)
+        res.routes.forEach((item) => {
+            http.getRoute(item).then((data) => {
+                postOnDocumentSetter(data.images, data)
+            })
         })
     }).catch((e) => {
         console.error(e)

@@ -70,8 +70,18 @@ function generateIndexOfImages(dataObject) {
 }
 
 function generatePost(dataObject) {
-    console.log(dataObject)
     http.postNewRoute(JSON.stringify(dataObject)).then((data) => {
-        console.log(data)
-    }).catch((err) => console.error(err))
+        changeUserData(data)
+    }).catch((err) => {
+        console.error(err)
+    })
+}
+
+function changeUserData(routeData) {
+    let username = String(localStorage.getItem('username'))
+    http.getUser(username).then((user) => {
+        http.userCreatedARoute(routeData.id, user[0].id, user[0].email, user[0].routes).then((output) => {
+            console.log(output)
+        })
+    })
 }
